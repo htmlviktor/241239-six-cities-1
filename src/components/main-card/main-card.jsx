@@ -18,7 +18,9 @@ const MainCard = (props) => {
 };
 
 MainCard.propTypes = {
-  infoCard: PropTypes.array
+  infoCard: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string
+  }))
 };
 
 export default MainCard;

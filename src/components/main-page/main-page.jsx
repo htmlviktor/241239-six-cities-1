@@ -110,7 +110,9 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string
+  }))
 };
 
 export default MainPage;
