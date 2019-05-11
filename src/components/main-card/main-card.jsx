@@ -1,26 +1,50 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ItemCard from '../item-card/item-card.jsx';
+import PlaceCard from '../place-card/place-card.jsx';
 
-const MainCard = (props) => {
-  const {infoCard} = props;
-  const cards = infoCard.map((el, index) => {
-    return <ItemCard
-      title={el.title}
-      key={index}
-    />;
-  });
-  return (
-    <div className="cities__places-list places__list tabs__content">
-      {cards}
-    </div>
-  );
-};
+export default class MainCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeCard: null,
+    };
+
+    this._activeCard = this._activeCard.bind(this);
+    this._deActive = this._deActive.bind(this);
+  }
+  _activeCard(id) {
+    this.setState({
+      activeCard: id,
+    });
+  }
+  _deActive() {
+    this.setState({
+      activeCard: null
+    });
+  }
+  render() {
+    const {dataCard} = this.props;
+    return (
+      <div className="cities__places-list places__list tabs__content">
+        {dataCard.map((data, index) => {
+          return <PlaceCard
+            onHover={this._activeCard}
+            onDeHover={this._deActive}
+            data={data}
+            key={index}
+            index={index}
+          />;
+        })}
+      </div>
+    );
+  }
+}
+
 
 MainCard.propTypes = {
-  infoCard: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string
+  dataCard: PropTypes.arrayOf(PropTypes.shape({
+    data: PropTypes.string
   }))
 };
 
-export default MainCard;
+

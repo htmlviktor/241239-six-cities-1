@@ -97,7 +97,7 @@ const MainPage = (props) => {
           */}
             </form>
 
-            <MainCard infoCard={data} />
+            <MainCard dataCard={data} />
 
           </section>
           <div className="cities__right-section">
