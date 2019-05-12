@@ -8,7 +8,8 @@ const mock = [
     price: `120`,
     degree: `Apartment`,
     order: `Premium`,
-    photo: `img/apartment-01.jpg`
+    photo: `img/apartment-01.jpg`,
+    id: 1
   },
 ];
 

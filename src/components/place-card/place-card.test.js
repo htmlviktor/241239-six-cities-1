@@ -8,7 +8,8 @@ const mock = [
     price: `120`,
     degree: `Apartment`,
     order: `Premium`,
-    photo: `img/apartment-01.jpg`
+    photo: `img/apartment-01.jpg`,
+    id: 1
   },
 ];
 
@@ -19,7 +20,7 @@ it(`Correctly render component ItemCard`, () => {
     onClick={testHandler}
     onDeHover={testHandler}
     onHover={testHandler}
-    index={0}
+    index={mock[0].id}
     data={mock[0]}
   />)
   .toJSON();

@@ -8,7 +8,6 @@ export default class PlaceCard extends Component {
 
   }
 
-
   render() {
     const {
       title,
@@ -17,9 +16,9 @@ export default class PlaceCard extends Component {
       photo,
       price} = this.props.data;
     const {
+      index,
       onClick,
       onHover,
-      index,
       onDeHover} = this.props;
     return (
       <article
@@ -74,6 +73,7 @@ export default class PlaceCard extends Component {
 }
 
 PlaceCard.propTypes = {
+  index: PropTypes.number.isRequired,
   onClick: PropTypes.func,
   onDeHover: PropTypes.func,
   onHover: PropTypes.func,
@@ -84,7 +84,6 @@ PlaceCard.propTypes = {
     price: PropTypes.string,
     title: PropTypes.string,
   }).isRequired,
-  index: PropTypes.number.isRequired
 };
 
 

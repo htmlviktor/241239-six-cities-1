@@ -269,7 +269,9 @@ exports[`Correctly renders component 'App' 1`] = `
               <div
                 className="place-card__mark"
               >
-                <span />
+                <span>
+                  Premium
+                </span>
               </div>
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -282,6 +284,7 @@ exports[`Correctly renders component 'App' 1`] = `
                     className="place-card__image"
                     height={200}
                     onClick={[Function]}
+                    src="img/apartment-01.jpg"
                     width={260}
                   />
                 </a>
@@ -299,6 +302,7 @@ exports[`Correctly renders component 'App' 1`] = `
                       className="place-card__price-value"
                     >
                       €
+                      120
                     </b>
                     <span
                       className="place-card__price-text"
@@ -357,7 +361,9 @@ exports[`Correctly renders component 'App' 1`] = `
                 </h2>
                 <p
                   className="place-card__type"
-                />
+                >
+                  Apartment
+                </p>
               </div>
             </article>
           </div>

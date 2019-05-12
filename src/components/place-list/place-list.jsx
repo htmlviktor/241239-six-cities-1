@@ -32,14 +32,14 @@ export default class PlaceList extends Component {
     const {dataCard} = this.props;
     return (
       <div className="cities__places-list places__list tabs__content">
-        {dataCard.map((data, index) => {
+        {dataCard.map((data) => {
           return <PlaceCard
             onClick={this.onClick}
             onHover={this._activeCard}
             onDeHover={this._deActive}
             data={data}
-            key={index}
-            index={index}
+            key={data.id}
+            index={data.id}
           />;
         })}
       </div>
