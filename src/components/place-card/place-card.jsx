@@ -74,10 +74,17 @@ export default class PlaceCard extends Component {
 }
 
 PlaceCard.propTypes = {
-  title: PropTypes.string,
-  onClickTitle: PropTypes.func,
-  onClickImage: PropTypes.func
-
+  onClick: PropTypes.func,
+  onDeHover: PropTypes.func,
+  onHover: PropTypes.func,
+  data: PropTypes.shape({
+    degree: PropTypes.string,
+    order: PropTypes.string,
+    photo: PropTypes.string,
+    price: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
+  index: PropTypes.number.isRequired
 };
 
 

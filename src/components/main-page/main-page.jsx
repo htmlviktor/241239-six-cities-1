@@ -110,9 +110,7 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string
-  }))
+  data: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default MainPage;

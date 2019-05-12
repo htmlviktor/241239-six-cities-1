@@ -11,6 +11,7 @@ export default class PlaceList extends Component {
 
     this._activeCard = this._activeCard.bind(this);
     this._deActive = this._deActive.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
   _activeCard(id) {
     this.setState({
@@ -23,7 +24,9 @@ export default class PlaceList extends Component {
     });
   }
   onClick(id) {
-    console.log(id)
+    this.setState({
+      activeCard: id,
+    });
   }
   render() {
     const {dataCard} = this.props;
@@ -46,9 +49,7 @@ export default class PlaceList extends Component {
 
 
 PlaceList.propTypes = {
-  dataCard: PropTypes.arrayOf(PropTypes.shape({
-    data: PropTypes.string
-  }))
+  dataCard: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 
