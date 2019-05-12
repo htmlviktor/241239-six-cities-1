@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 
-export default class MainCard extends Component {
+export default class PlaceList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,12 +22,16 @@ export default class MainCard extends Component {
       activeCard: null
     });
   }
+  onClick(id) {
+    console.log(id)
+  }
   render() {
     const {dataCard} = this.props;
     return (
       <div className="cities__places-list places__list tabs__content">
         {dataCard.map((data, index) => {
           return <PlaceCard
+            onClick={this.onClick}
             onHover={this._activeCard}
             onDeHover={this._deActive}
             data={data}
@@ -41,7 +45,7 @@ export default class MainCard extends Component {
 }
 
 
-MainCard.propTypes = {
+PlaceList.propTypes = {
   dataCard: PropTypes.arrayOf(PropTypes.shape({
     data: PropTypes.string
   }))

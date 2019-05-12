@@ -10,12 +10,15 @@ export default class PlaceCard extends Component {
 
 
   render() {
-    const {title,
+    const {
+      title,
       degree,
       order,
       photo,
       price} = this.props.data;
-    const {onHover,
+    const {
+      onClick,
+      onHover,
       index,
       onDeHover} = this.props;
     return (
@@ -31,7 +34,9 @@ export default class PlaceCard extends Component {
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#" >
             <img
-
+              onClick={()=> {
+                onClick(index);
+              }}
               className="place-card__image"
               src={photo}
               width={260}

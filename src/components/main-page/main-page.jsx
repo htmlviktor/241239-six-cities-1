@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MainCard from '../main-card/main-card.jsx';
+import PlaceList from '../place-list/place-list.jsx';
 
 const MainPage = (props) => {
   const {data} = props;
@@ -97,7 +97,7 @@ const MainPage = (props) => {
           */}
             </form>
 
-            <MainCard dataCard={data} />
+            <PlaceList dataCard={data} />
 
           </section>
           <div className="cities__right-section">

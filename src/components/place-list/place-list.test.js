@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MainCard from './main-card.jsx';
+import PlaceList from './place-list.jsx';
 
 const mock = [
   {title: `Beautiful & luxurious apartment at great location`},
@@ -8,7 +8,7 @@ const mock = [
 
 it(`Correctly render component MainCard`, () => {
   const tree = renderer
-  .create(<MainCard
+  .create(<PlaceList
     infoCard = {mock}
   />)
   .toJSON();
