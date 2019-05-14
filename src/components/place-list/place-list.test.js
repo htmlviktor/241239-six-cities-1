@@ -16,7 +16,7 @@ const mock = [
 it(`Correctly render component MainCard`, () => {
   const tree = renderer
   .create(<PlaceList
-    dataCard = {mock}
+    cards = {mock}
   />)
   .toJSON();
 

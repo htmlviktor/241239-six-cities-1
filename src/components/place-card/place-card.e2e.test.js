@@ -25,12 +25,9 @@ describe(`Test e2e value component`, () => {
 
   it(`Click on link - 'Head in Card'`, () => {
     const imageCard = app.find(`.place-card__image`);
-    imageCard.simulate(`click`, {
-      target: {value: mock[0].id}
-    });
+    imageCard.simulate(`click`);
 
     expect(clickHandler).toHaveBeenCalledTimes(1);
-    clickHandler.mockReturnValue(mock[0].id);
-    expect(clickHandler()).toBe(55);
+    expect(clickHandler).toHaveBeenCalledWith(mock[0].id);
   });
 });

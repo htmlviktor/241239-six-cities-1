@@ -29,17 +29,18 @@ export default class PlaceList extends Component {
     });
   }
   render() {
-    const {dataCard} = this.props;
+    const {cards} = this.props;
+
     return (
       <div className="cities__places-list places__list tabs__content">
-        {dataCard.map((data) => {
+        {cards.map((card) => {
+
           return <PlaceCard
             onClick={this.onClick}
             onHover={this._activeCard}
             onDeHover={this._deActive}
-            data={data}
-            key={data.id}
-            index={data.id}
+            data={card}
+            key={card.id}
           />;
         })}
       </div>
@@ -49,7 +50,7 @@ export default class PlaceList extends Component {
 
 
 PlaceList.propTypes = {
-  dataCard: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 

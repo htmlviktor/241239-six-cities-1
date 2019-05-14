@@ -10,20 +10,20 @@ export default class PlaceCard extends Component {
 
   render() {
     const {
+      id,
       title,
       degree,
       order,
       photo,
       price} = this.props.data;
     const {
-      index,
       onClick,
       onHover,
       onDeHover} = this.props;
     return (
       <article
         onMouseEnter={() => {
-          onHover(index);
+          onHover(id);
         }}
         onMouseLeave={onDeHover}
         className="cities__place-card place-card">
@@ -34,7 +34,7 @@ export default class PlaceCard extends Component {
           <a href="#" >
             <img
               onClick={()=> {
-                onClick(index);
+                onClick(id);
               }}
               className="place-card__image"
               src={photo}
@@ -73,11 +73,11 @@ export default class PlaceCard extends Component {
 }
 
 PlaceCard.propTypes = {
-  index: PropTypes.number.isRequired,
   onClick: PropTypes.func,
   onDeHover: PropTypes.func,
   onHover: PropTypes.func,
   data: PropTypes.shape({
+    id: PropTypes.number,
     degree: PropTypes.string,
     order: PropTypes.string,
     photo: PropTypes.string,
