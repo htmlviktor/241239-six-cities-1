@@ -20,6 +20,7 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
+    const {cards} = this.props;
     const city = [52.38333, 4.9];
 
     const icon = leaflet.icon({
@@ -46,5 +47,11 @@ export default class Map extends Component {
     leaflet
   .marker(offerCords, {icon})
   .addTo(map);
+
+    cards.forEach((card) => {
+      leaflet
+  .marker(card.coordinates, {icon})
+  .addTo(map);
+    });
   }
 }

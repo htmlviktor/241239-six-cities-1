@@ -104,7 +104,7 @@ const MainPage = (props) => {
           </section>
           <div className="cities__right-section">
             <section className="cities__map map" >
-              <Map cards={props}/>
+              <Map cards={props.data}/>
             </section>
 
           </div>
