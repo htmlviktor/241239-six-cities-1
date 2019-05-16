@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
 export default class Map extends Component {
   constructor(props) {
     super(props);
-
     this.container = React.createRef();
   }
 
@@ -55,3 +55,8 @@ export default class Map extends Component {
     });
   }
 }
+
+Map.propTypes = {
+  cards: PropTypes.array,
+};
+

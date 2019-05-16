@@ -99,7 +99,8 @@ const MainPage = (props) => {
           */}
             </form>
 
-            <PlaceList cards={data} />
+            <PlaceList
+              cards={data} />
 
           </section>
           <div className="cities__right-section">
