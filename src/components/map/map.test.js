@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import Map from './map.jsx';
 
 import leaflet from 'leaflet';
 
@@ -16,16 +16,16 @@ const mock = [
     degree: `Apartment`,
     order: `Premium`,
     photo: `img/apartment-01.jpg`,
-    id: 1
+    id: 1,
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
 ];
 
-it(`Correctly renders component 'App'`, () => {
+it(`Snapshot test Map Component`, () => {
   const tree = renderer
-    .create(<App
-      data = {mock}
-    />)
-    .toJSON();
+  .create(<Map
+    cards={mock}
+  />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

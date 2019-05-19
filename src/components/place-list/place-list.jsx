@@ -30,7 +30,6 @@ export default class PlaceList extends Component {
   }
   render() {
     const {cards} = this.props;
-
     return (
       <div className="cities__places-list places__list tabs__content">
         {cards.map((card) => {
