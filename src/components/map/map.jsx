@@ -14,13 +14,12 @@ export default class Map extends Component {
         style={{height: `100%`}}
         ref={this.container}
         id="map">
-
       </div>
     );
   }
 
   componentDidMount() {
-    const {cards} = this.props;
+    const {cards, currentCity} = this.props;
     const city = [52.38333, 4.9];
 
     const icon = leaflet.icon({
@@ -42,8 +41,7 @@ export default class Map extends Component {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(map);
-
-    cards.forEach((card) => {
+    cards.filter((el) => el.city === currentCity).forEach((card) => {
       leaflet
         .marker(card.coordinates, {icon})
         .addTo(map);
@@ -53,5 +51,6 @@ export default class Map extends Component {
 
 Map.propTypes = {
   cards: PropTypes.array,
+  currentCity: PropTypes.string
 };
 
