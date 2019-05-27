@@ -81,6 +81,7 @@ const MainPage = (props) => {
           <div className="cities__right-section">
             <section className="cities__map map" >
               <Map cards={data}
+                key={currentCity}
                 currentCity={currentCity}
               />
             </section>

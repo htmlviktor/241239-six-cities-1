@@ -2,7 +2,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import MainPage from './main-page.jsx';
 
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 import leaflet from 'leaflet';
+import reducer from '../../reducer.js';
 
 leaflet.map = () => ({
   setView: () => {},
@@ -20,11 +23,17 @@ const mock = [
   },
 ];
 
+const store = createStore(reducer);
+
 it(`Correctly render component MainPage`, () => {
   const tree = renderer
-  .create(<MainPage
-    data = {mock}
-  />)
+  .create(
+      <Provider store={store}>
+        <MainPage
+          data = {mock}
+        />
+      </Provider>
+  )
   .toJSON();
 
   expect(tree).toMatchSnapshot();
