@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CityList = ({citys, onChangeCity}) => {
+const CityList = ({cities, onChangeCity}) => {
   return <ul className="locations__list tabs__list">
-    {Array.from(citys).map((city) => <li key={city} className="locations__item">
+    {Array.from(cities).map((city) => <li key={city} className="locations__item">
       <a
         onClick={(evt) => {
           evt.preventDefault();
@@ -18,7 +18,7 @@ const CityList = ({citys, onChangeCity}) => {
 };
 
 CityList.propTypes = {
-  citys: PropTypes.object,
+  cities: PropTypes.object,
   onChangeCity: PropTypes.func
 };
 

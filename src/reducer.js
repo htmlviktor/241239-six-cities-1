@@ -2,7 +2,7 @@ import data from './mocks/offers';
 
 const initialState = {
   currentCity: `Amsterdam`,
-  listCitys: new Set([...data.map((offer) => offer.city)])
+  listCities: new Set([...data.map((offer) => offer.city)])
 };
 
 const reducer = (state = initialState, action) => {

@@ -43,7 +43,7 @@ export default class Map extends Component {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this.map);
-    cards.filter((el) => el.city === currentCity).forEach((card) => {
+    cards.forEach((card) => {
       leaflet
         .marker(card.coordinates, {icon})
         .addTo(this.map);
