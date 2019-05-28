@@ -12,7 +12,7 @@ it(`Test CityList Component`, () => {
   const tree = renderer
     .create(<CityList
       onChangeCity={() => {}}
-      citys={mock}
+      cities={mock}
     />).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -30,7 +30,7 @@ it(`Correctly render component MainPage`, () => {
   .create(
       <Provider store={store}>
         <MainPage
-          data = {mock}
+          offers = {mock}
         />
       </Provider>
   )
