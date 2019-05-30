@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CityList = ({cities, onChangeCity, onActiveItemChange, activeItem}) => {
   return <ul className="locations__list tabs__list">
-    {Array.from(cities).map((city) => <li key={city} className="locations__item ">
+    {Array.from(cities).map((city) => <li key={city} className={`locations__item-link ${activeItem === city ? `tabs__item--active` : ``}`}>
       <a
         onClick={(evt) => {
           evt.preventDefault();
@@ -20,7 +20,9 @@ const CityList = ({cities, onChangeCity, onActiveItemChange, activeItem}) => {
 
 CityList.propTypes = {
   cities: PropTypes.object,
-  onChangeCity: PropTypes.func
+  onChangeCity: PropTypes.func,
+  onActiveItemChange: PropTypes.func,
+  activeItem: PropTypes.string
 };
 
 export default CityList;
