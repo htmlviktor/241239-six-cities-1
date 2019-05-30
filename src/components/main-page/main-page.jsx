@@ -7,6 +7,10 @@ import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
 import * as actions from '../../actions';
 
+import witchActiveItem from '../../hocs/witch-active-item';
+
+const PlaceListWrapped = witchActiveItem(PlaceList);
+const CityListWrapped = witchActiveItem(CityList);
 
 const MainPage = (props) => {
   const {offers, cities, onChangeCity, currentCity} = props;
@@ -41,7 +45,7 @@ const MainPage = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <section className="locations container">
-          <CityList
+          <CityListWrapped
             onChangeCity={onChangeCity}
             cities={cities}/>
         </section></div>

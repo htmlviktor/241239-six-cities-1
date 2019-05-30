@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CityList = ({cities, onChangeCity}) => {
+const CityList = ({cities, onChangeCity, onActiveItemChange, activeItem}) => {
   return <ul className="locations__list tabs__list">
-    {Array.from(cities).map((city) => <li key={city} className="locations__item">
+    {Array.from(cities).map((city) => <li key={city} className="locations__item ">
       <a
         onClick={(evt) => {
           evt.preventDefault();
           onChangeCity(city);
+          onActiveItemChange(city);
         }}
         className="locations__item-link tabs__item"
         href="#">
