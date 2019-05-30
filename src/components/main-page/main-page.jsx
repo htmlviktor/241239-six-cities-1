@@ -78,7 +78,7 @@ const MainPage = (props) => {
           */}
             </form>
 
-            <PlaceList
+            <PlaceListWrapped
               currentCity={currentCity}
               cards={offers} />
 
