@@ -10,5 +10,9 @@ const MockComponentWrapped = witchActiveItem(MockComponent);
 it(`Test HOC Component`, () => {
   const wrapper = shallow(<MockComponentWrapped />);
 
-  expect(wrapper.state().activeItem).toEqual(null);
+  expect(wrapper.props().activeItem).toEqual(null);
+
+  wrapper.props().onActiveItemChange(2);
+  expect(wrapper.props().activeItem).toEqual(2);
 });
+
