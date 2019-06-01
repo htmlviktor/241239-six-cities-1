@@ -109,7 +109,8 @@ MainPage.propTypes = {
 const mapStateToProps = (state) => {
   return {
     cities: state.listCities,
-    currentCity: state.currentCity
+    currentCity: state.currentCity,
+    offers: state.offers
   };
 };
 
