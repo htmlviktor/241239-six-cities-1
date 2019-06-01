@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CityList = ({cities, onChangeCity, onActiveItemChange, activeItem}) => {
+  console.log(onChangeCity)
   return <ul className="locations__list tabs__list">
     {Array.from(cities).map((city) => <li key={city} className={`locations__item-link ${activeItem === city ? `tabs__item--active` : ``}`}>
       <a

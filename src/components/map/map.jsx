@@ -22,8 +22,9 @@ export default class Map extends Component {
 
   componentDidMount() {
     const {cards} = this.props;
-    const city = [52.38333, 4.9];
+    
 
+    const city = [52.38333, 4.9];
     const icon = leaflet.icon({
       iconUrl: `img/map-pin.svg`,
       iconSize: [30, 30]
@@ -44,8 +45,9 @@ export default class Map extends Component {
       })
       .addTo(this.map);
     cards.forEach((card) => {
+      const location = [card.location.latitude, card.location.longitude];
       leaflet
-        .marker(card.coordinates, {icon})
+        .marker(location, {icon})
         .addTo(this.map);
     });
   }

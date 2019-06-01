@@ -1,8 +1,8 @@
-import {loadOffers} from './actions';
+import {loadOffers, loadCitiesList} from './actions';
 
 const initialState = {
   currentCity: `Amsterdam`,
-  listCities: new Set([...data.map((offer) => offer.city)]),
+  listCities: new Set(),
   offers: []
 };
 
@@ -11,6 +11,7 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(loadOffers(response.data));
+        dispatch(loadCitiesList(response.data));
       });
   }
 };
@@ -24,6 +25,10 @@ const reducer = (state = initialState, action) => {
     case `LOAD_OFFERS`:
       return Object.assign({}, state, {
         offers: action.offers
+      });
+    case `LOAD_CITIES_LIST`:
+      return Object.assign({}, state, {
+        listCities: new Set([...action.list.map((offer) => offer.city.name)])
       });
     default: return state;
   }

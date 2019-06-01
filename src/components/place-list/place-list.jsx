@@ -10,10 +10,10 @@ export default class PlaceList extends Component {
   }
 
   render() {
-    const {cards, currentCity, onActiveItemChange} = this.props;
+    const {cards, onActiveItemChange} = this.props;
     return (
       <div className="cities__places-list places__list tabs__content">
-        {cards.filter((el) => el.city === currentCity).map((card) => {
+        {cards.map((card) => {
 
           return <PlaceCard
             onHover={() => {
