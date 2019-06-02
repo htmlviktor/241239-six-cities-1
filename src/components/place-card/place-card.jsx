@@ -5,7 +5,6 @@ export default class PlaceCard extends Component {
 
   constructor(props) {
     super(props);
-
   }
 
   render() {

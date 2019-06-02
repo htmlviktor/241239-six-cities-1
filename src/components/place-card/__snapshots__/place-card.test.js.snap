@@ -23,7 +23,6 @@ exports[`Correctly render component ItemCard 1`] = `
         className="place-card__image"
         height={200}
         onClick={[Function]}
-        src="img/apartment-01.jpg"
         width={260}
       />
     </a>

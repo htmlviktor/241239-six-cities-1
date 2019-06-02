@@ -110,86 +110,7 @@ exports[`Correctly render component MainPage 1`] = `
       >
         <ul
           className="locations__list tabs__list"
-        >
-          <li
-            className="locations__item-link "
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item-link "
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Wroclaw
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item-link "
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Berlin
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item-link "
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Vena
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item-link "
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Budapesht
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item-link "
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Krakow
-              </span>
-            </a>
-          </li>
-        </ul>
+        />
       </section>
     </div>
     <div
@@ -209,7 +130,7 @@ exports[`Correctly render component MainPage 1`] = `
           <b
             className="places__found"
           >
-            312 places to stay in Amsterdam
+            0 places to stay in Amsterdam
           </b>
           <form
             action="#"
