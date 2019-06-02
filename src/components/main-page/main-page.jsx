@@ -5,9 +5,10 @@ import {connect} from 'react-redux';
 import PlaceList from '../place-list/place-list.jsx';
 import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
-import * as actions from '../../actions';
 
 import witchActiveItem from '../../hocs/witch-active-item';
+
+import {ActionCreator} from '../../reducer/user/user';
 
 const PlaceListWrapped = witchActiveItem(PlaceList);
 const CityListWrapped = witchActiveItem(CityList);
@@ -108,15 +109,15 @@ MainPage.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    cities: state.listCities,
-    currentCity: state.currentCity,
-    offers: state.offers
+    offers: state.DATA.offers,
+    cities: state.DATA.listCities,
+    currentCity: state.USER.currentCity,
   };
 };
 
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeCity: (city) => dispatch(actions.changeCity(city)),
+  onChangeCity: (city) => dispatch(ActionCreator.changeCity(city)),
 });
 
 

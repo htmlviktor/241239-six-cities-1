@@ -6,11 +6,11 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
 import {createAPI} from './api';
+import reducer from './reducer/index';
 
 import App from './components/app/app.jsx';
-import mock from './mocks/offers.js';
 
-import {reducer, Operation} from './reducer';
+import {Operation} from './reducer/data/data';
 
 const api = createAPI((...args) => store.dispatch(...args));
 
@@ -26,9 +26,7 @@ const init = () => {
   store.dispatch(Operation.loadOffers());
   ReactDOM.render(
       <Provider store={store}>
-        <App
-          data={mock}
-        />
+        <App />
       </Provider>
       , document.getElementById(`root`)
   );

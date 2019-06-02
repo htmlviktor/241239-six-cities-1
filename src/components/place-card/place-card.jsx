@@ -14,7 +14,7 @@ export default class PlaceCard extends Component {
       title,
       degree,
       order,
-      preview_image,
+      previewImage,
       price} = this.props.data;
     const {onHover, onClickActiveCard} = this.props;
     return (
@@ -31,7 +31,7 @@ export default class PlaceCard extends Component {
                 onClickActiveCard(id);
               }}
               className="place-card__image"
-              src={preview_image}
+              src={previewImage}
               width={260}
               height={200}
               alt="Place image" />
@@ -70,11 +70,12 @@ PlaceCard.propTypes = {
   onClickActiveCard: PropTypes.func,
   onHover: PropTypes.func,
   data: PropTypes.shape({
+    previewImage: PropTypes.string,
     id: PropTypes.number,
     degree: PropTypes.string,
     order: PropTypes.string,
     photo: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     title: PropTypes.string,
   }).isRequired,
 };
