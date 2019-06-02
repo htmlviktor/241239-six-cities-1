@@ -49,6 +49,7 @@ const MainPage = ({offers, cities, onChangeCity, currentCity}) => {
         <section className="locations container">
           <CityListWrapped
             onChangeCity={onChangeCity}
+            currentCity={currentCity}
             cities={cities}/>
         </section></div>
       <div className="cities__places-wrapper">
