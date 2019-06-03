@@ -6,17 +6,21 @@ import PlaceList from '../place-list/place-list.jsx';
 import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
 
-import witchActiveItem from '../../hocs/witch-active-item';
+import witchActiveItem from '../../hocs/witch-active-item/witch-active-item';
 
 import {ActionCreator} from '../../reducer/user/user';
 
+import {getUserData, getAutorizationStatus} from '../../reducer/user/selectors';
 import {getCurrentOffers, getCitiesList} from '../../reducer/data/selectors.js';
+
 import {getCurrentCity} from '../../reducer/user/selectors.js';
+
 
 const PlaceListWrapped = witchActiveItem(PlaceList);
 const CityListWrapped = witchActiveItem(CityList);
 
-const MainPage = ({offers, cities, onChangeCity, currentCity}) => {
+const MainPage = ({offers, cities, onChangeCity, currentCity, userData, auth}) => {
+  const {email} = userData;
   return <div>
     <div style={{display: `none`}}>
       <svg xmlns="http://www.w3.org/2000/svg"><symbol id="icon-arrow-select" viewBox="0 0 7 4"><path fillRule="evenodd" clipRule="evenodd" d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z" /></symbol><symbol id="icon-bookmark" viewBox="0 0 17 18"><path d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z" /></symbol><symbol id="icon-star" viewBox="0 0 13 12"><path fillRule="evenodd" clipRule="evenodd" d="M6.5 9.644L10.517 12 9.451 7.56 13 4.573l-4.674-.386L6.5 0 4.673 4.187 0 4.573 3.549 7.56 2.483 12 6.5 9.644z" /></symbol></svg>
@@ -35,7 +39,8 @@ const MainPage = ({offers, cities, onChangeCity, currentCity}) => {
                 <a className="header__nav-link header__nav-link--profile" href="#">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                  <span
+                    className="header__user-name user__name">{auth ? email : `Sign in`}</span>
                 </a>
               </li>
             </ul>
@@ -77,7 +82,9 @@ MainPage.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   cities: PropTypes.object,
   onChangeCity: PropTypes.func,
-  currentCity: PropTypes.string
+  currentCity: PropTypes.string,
+  userData: PropTypes.object,
+  auth: PropTypes.bool
 };
 
 
@@ -86,6 +93,8 @@ const mapStateToProps = (state) => {
     offers: getCurrentOffers(state),
     cities: getCitiesList(state),
     currentCity: getCurrentCity(state),
+    userData: getUserData(state),
+    auth: getAutorizationStatus(state)
   };
 };
 
