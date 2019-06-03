@@ -6,7 +6,7 @@ import PlaceList from '../place-list/place-list.jsx';
 import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
 
-import witchActiveItem from '../../hocs/witch-active-item';
+import witchActiveItem from '../../hocs/witch-active-item/witch-active-item';
 
 import {ActionCreator} from '../../reducer/user/user';
 
