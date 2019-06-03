@@ -5,7 +5,7 @@ import MainPage from './main-page.jsx';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import leaflet from 'leaflet';
-import reducer from '../../reducer.js';
+import reducer from '../../reducer/index';
 
 leaflet.map = () => ({
   setView: () => {},

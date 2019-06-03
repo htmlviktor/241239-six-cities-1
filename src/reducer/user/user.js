@@ -1,8 +1,18 @@
-import data from './mocks/offers';
-
 const initialState = {
   currentCity: `Amsterdam`,
-  listCities: new Set([...data.map((offer) => offer.city)])
+};
+
+const ActionType = {
+  CITY_CHANGE: `CITY_CHANGE`,
+};
+
+const ActionCreator = {
+  changeCity: (city) => {
+    return {
+      type: ActionType.CITY_CHANGE,
+      city
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,4 +26,7 @@ const reducer = (state = initialState, action) => {
 };
 
 
-export default reducer;
+export {
+  reducer,
+  ActionCreator,
+};
