@@ -1,0 +1,50 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import {Switch, Route, Redirect} from 'react-router-dom';
+
+import SignIn from '../../components/sign-in/sign-in.jsx';
+import Favorites from '../../components/favorites/favorites.jsx';
+
+import {witchAuthorization} from '../../hocs/witch-authorization/witch-authorization';
+import witchPrivateRoute from '../../hocs/witch-private-route/witch-private-route';
+
+const SignInWrapped = witchAuthorization(SignIn);
+/* Проверка на приватный маршрут */
+
+
+const witchRoute = (Component) => {
+  class WitchRoute extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
+    render() {
+      const {isLoggedIn} = this.props;
+      const SignInWrappedPrivate = witchPrivateRoute(SignInWrapped, !isLoggedIn);
+      const FavoritesPrivate = witchPrivateRoute(Favorites, isLoggedIn, `/login`);
+      return (
+        <Switch>
+          <Route path="/" exact render={() => {
+            return <Component {...this.props}/>;
+          }} />
+          <Route path="/login" exact component={SignInWrappedPrivate} />
+          <Route path="/favorites" exact component={FavoritesPrivate} />
+
+          <Redirect to="/"/>
+        </Switch>
+
+      );
+    }
+
+  }
+
+
+  WitchRoute.propTypes = {
+    isLoggedIn: PropTypes.bool
+  };
+
+  return WitchRoute;
+};
+
+export default witchRoute;

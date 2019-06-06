@@ -1,19 +1,16 @@
 import React from 'react';
-import MainPage from '../main-page/main-page.jsx';
-import SignIn from '../sign-in/sign-in.jsx';
+import PropTypes from 'prop-types';
+
+import MainPage from '../../components/main-page/main-page.jsx';
+
 import {connect} from 'react-redux';
 import {getAutorizationStatus} from '../../reducer/user/selectors';
-import {witchAuthorization} from '../../hocs/witch-authorization/witch-authorization';
+import witchRoute from '../../hocs/witch-route/witch-route';
 
-const SignInWrapped = witchAuthorization(SignIn);
+const MainPageWrapped = witchRoute(MainPage);
 
 const App = ({isAutorization}) => {
-  if (isAutorization) {
-    return <MainPage />;
-  } else {
-    return <SignInWrapped />;
-  }
-
+  return <MainPageWrapped isLoggedIn={isAutorization}/>;
 };
 
 const mapStateToProps = (state) => {
@@ -22,4 +19,8 @@ const mapStateToProps = (state) => {
   };
 };
 
+App.propTypes = {
+  getRoute: PropTypes.func,
+  isAutorization: PropTypes.bool
+};
 export default connect(mapStateToProps)(App);
