@@ -5,6 +5,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 
 import SignIn from '../../components/sign-in/sign-in.jsx';
 import Favorites from '../../components/favorites/favorites.jsx';
+import Property from '../../components/property/property.jsx';
 
 import {witchAuthorization} from '../../hocs/witch-authorization/witch-authorization';
 import witchPrivateRoute from '../../hocs/witch-private-route/witch-private-route';
@@ -30,8 +31,10 @@ const witchRoute = (Component) => {
           }} />
           <Route path="/login" exact component={SignInWrappedPrivate} />
           <Route path="/favorites" exact component={FavoritesPrivate} />
-
-          <Redirect to="/"/>
+          <Route path="/offer/:id" exact render={({match}) => {
+            return <Property offerId={match.params.id}/>;
+          }} />
+          {/* <Redirect to="/"/> */}
         </Switch>
 
       );

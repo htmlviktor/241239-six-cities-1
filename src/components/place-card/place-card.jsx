@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 export default class PlaceCard extends Component {
 
@@ -56,7 +57,7 @@ export default class PlaceCard extends Component {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#" >{title}</a>
+            <Link to={`/offer/${id}`} >{title}</Link>
           </h2>
           <p className="place-card__type">{degree}</p>
         </div>
