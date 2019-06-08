@@ -32,9 +32,10 @@ const witchRoute = (Component) => {
           <Route path="/login" exact component={SignInWrappedPrivate} />
           <Route path="/favorites" exact component={FavoritesPrivate} />
           <Route path="/offer/:id" exact render={({match}) => {
-            return <Property offerId={match.params.id}/>;
+            return <Property
+              offerId={match.params.id}/>;
           }} />
-          {/* <Redirect to="/"/> */}
+          <Redirect to="/"/>
         </Switch>
 
       );
