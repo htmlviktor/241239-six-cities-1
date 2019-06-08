@@ -21,6 +21,7 @@ const witchRoute = (Component) => {
     }
 
     render() {
+
       const {isLoggedIn} = this.props;
       const SignInWrappedPrivate = witchPrivateRoute(SignInWrapped, !isLoggedIn);
       const FavoritesPrivate = witchPrivateRoute(Favorites, isLoggedIn, `/login`);
@@ -31,13 +32,9 @@ const witchRoute = (Component) => {
           }} />
           <Route path="/login" exact component={SignInWrappedPrivate} />
           <Route path="/favorites" exact component={FavoritesPrivate} />
-          <Route path="/offer/:id" exact render={({match}) => {
-            return <Property
-              offerId={match.params.id}/>;
-          }} />
+          <Route path="/offer/:id" exact render={({match}) => <Property offerId={match.params.id} />} />
           <Redirect to="/"/>
         </Switch>
-
       );
     }
 
@@ -45,7 +42,8 @@ const witchRoute = (Component) => {
 
 
   WitchRoute.propTypes = {
-    isLoggedIn: PropTypes.bool
+    isLoggedIn: PropTypes.bool,
+    offers: PropTypes.array
   };
 
   return WitchRoute;

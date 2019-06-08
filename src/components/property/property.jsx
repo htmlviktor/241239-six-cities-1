@@ -1,32 +1,35 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Header from '../header/header.jsx';
 import Gallery from '../gallery/gallery.jsx';
-import Map from '../map/map.jsx';
+// import Map from '../map/map.jsx';
 import HotelDescription from '../hotel-description/hotel-description.jsx';
-
 import {connect} from 'react-redux';
-import {createAPI} from '../../api';
-import {getUserData} from '../../reducer/user/selectors';
+import {getOffers} from '../../reducer/data/selectors';
 
 class Property extends Component {
   constructor(props) {
     super(props);
-    this.api = createAPI();
   }
+
   render() {
+    const {offers, offerId} = this.props;
+    const offer = offers.find((el) => {
+      return el.id === Number(offerId);
+    });
     return (<React.Fragment>
       <Header />
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
-            <Gallery />
+            <Gallery images={offer.images}/>
           </div>
           <div className="property__container container">
-            <HotelDescription />
+            <HotelDescription offer={offer}/>
 
           </div>
           <section className="property__map map" />
-          {/* <Map /> */}
+          {/* <Map offer={offer}/> */}
         </section>
         <div className="container">
           <section className="near-places places">
@@ -134,5 +137,15 @@ class Property extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    offers: getOffers(state),
+  };
+};
 
-export default Property;
+Property.propTypes = {
+  offers: PropTypes.array,
+  offerId: PropTypes.string
+};
+
+export default connect(mapStateToProps)(Property);
