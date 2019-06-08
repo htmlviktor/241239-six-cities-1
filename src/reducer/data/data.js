@@ -1,7 +1,7 @@
 import {adapter} from './adapter';
 
 const initialState = {
-  offers: []
+  offers: [],
 };
 
 export const ActionType = {

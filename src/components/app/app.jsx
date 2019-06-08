@@ -10,6 +10,7 @@ import witchRoute from '../../hocs/witch-route/witch-route';
 const MainPageWrapped = witchRoute(MainPage);
 
 const App = ({isAutorization}) => {
+
   return <MainPageWrapped isLoggedIn={isAutorization}/>;
 };
 
