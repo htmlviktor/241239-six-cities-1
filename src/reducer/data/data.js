@@ -2,12 +2,14 @@ import {adapter} from './adapter';
 
 const initialState = {
   offers: [],
+  activeOfferId: null,
   currentOfferId: 1,
 };
 
 export const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
-  CURRENT_OFFER: `CURRENT_OFFER`
+  CURRENT_OFFER: `CURRENT_OFFER`,
+  ACTIVE_OFFER: `ACTIVE_OFFER`
 };
 
 const ActionCreator = {
@@ -20,6 +22,12 @@ const ActionCreator = {
   currentOfferId: (id) => {
     return {
       type: ActionType.CURRENT_OFFER,
+      id
+    };
+  },
+  activeOfferId: (id) => {
+    return {
+      type: ActionType.ACTIVE_OFFER,
       id
     };
   }
@@ -43,6 +51,10 @@ const reducer = (state = initialState, action) => {
     case `CURRENT_OFFER`:
       return Object.assign({}, state, {
         currentOfferId: action.id
+      });
+    case `ACTIVE_OFFER`:
+      return Object.assign({}, state, {
+        activeOfferId: action.id,
       });
     default: return state;
   }

@@ -37,7 +37,7 @@ export default class PlaceList extends PureComponent {
           */}
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {offers.map((card) => {
+          {offers.map((card, index) => {
 
             return <PlaceCard
               onClickActiveCard={(id) => {
@@ -45,6 +45,7 @@ export default class PlaceList extends PureComponent {
               }}
               data={card}
               key={card.id}
+              activeIndex={index}
             />;
           })}
         </div>

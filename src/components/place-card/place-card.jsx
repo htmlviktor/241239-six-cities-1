@@ -16,7 +16,7 @@ export default class PlaceCard extends Component {
       order,
       previewImage,
       price} = this.props.data;
-    const {onHover, onClickActiveCard} = this.props;
+    const {onHover, onClickActiveCard, activeIndex} = this.props;
     return (
       <article
         onMouseEnter={onHover}
@@ -29,7 +29,7 @@ export default class PlaceCard extends Component {
             <img
               onClick={(evt) => {
                 evt.preventDefault();
-                onClickActiveCard(id);
+                onClickActiveCard(activeIndex);
               }}
               className="place-card__image"
               src={previewImage}
@@ -69,6 +69,7 @@ export default class PlaceCard extends Component {
 
 PlaceCard.propTypes = {
   onClickActiveCard: PropTypes.func,
+  activeIndex: PropTypes.number,
   onHover: PropTypes.func,
   data: PropTypes.shape({
     previewImage: PropTypes.string,
