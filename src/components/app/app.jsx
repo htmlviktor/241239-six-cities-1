@@ -10,7 +10,6 @@ import witchRoute from '../../hocs/witch-route/witch-route';
 const MainPageWrapped = witchRoute(MainPage);
 
 const App = ({isAutorization}) => {
-
   return <MainPageWrapped isLoggedIn={isAutorization}/>;
 };
 
@@ -19,6 +18,7 @@ const mapStateToProps = (state) => {
     isAutorization: getAutorizationStatus(state),
   };
 };
+
 
 App.propTypes = {
   getRoute: PropTypes.func,

@@ -39,6 +39,12 @@ const Operation = {
           dispatch(ActionCreator.userLogin());
         }
       });
+  },
+  userSaveCockie: () => (dispatch, _getState, api) => {
+    return api.get(`/login`).then(({data}) => {
+      dispatch(ActionCreator.userSaveData(data));
+      dispatch(ActionCreator.userLogin());
+    });
   }
 };
 

@@ -12,6 +12,7 @@ import {BrowserRouter} from 'react-router-dom';
 import App from './components/app/app.jsx';
 
 import {Operation} from './reducer/data/data';
+import {Operation as OperationUser} from './reducer/user/user';
 
 const api = createAPI(() => history.pushState(null, null, `/login`));
 
@@ -25,6 +26,7 @@ const store = createStore(
 
 const init = () => {
   store.dispatch(Operation.loadOffers());
+  store.dispatch(OperationUser.userSaveCockie());
   ReactDOM.render(
       <Provider store={store}>
         <BrowserRouter>

@@ -27,7 +27,8 @@ export default class PlaceCard extends Component {
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#" >
             <img
-              onClick={() => {
+              onClick={(evt) => {
+                evt.preventDefault();
                 onClickActiveCard(id);
               }}
               className="place-card__image"

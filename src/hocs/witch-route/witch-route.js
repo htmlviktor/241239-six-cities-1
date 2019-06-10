@@ -10,6 +10,7 @@ import Property from '../../components/property/property.jsx';
 import {witchAuthorization} from '../../hocs/witch-authorization/witch-authorization';
 import witchPrivateRoute from '../../hocs/witch-private-route/witch-private-route';
 
+
 const SignInWrapped = witchAuthorization(SignIn);
 /* Проверка на приватный маршрут */
 
@@ -27,9 +28,7 @@ const witchRoute = (Component) => {
       const FavoritesPrivate = witchPrivateRoute(Favorites, isLoggedIn, `/login`);
       return (
         <Switch>
-          <Route path="/" exact render={() => {
-            return <Component {...this.props}/>;
-          }} />
+          <Route path="/" exact component={Component} />
           <Route path="/login" exact component={SignInWrappedPrivate} />
           <Route path="/favorites" exact component={FavoritesPrivate} />
           <Route path="/offer/:id" exact render={({match}) => <Property offerId={match.params.id} />} />
