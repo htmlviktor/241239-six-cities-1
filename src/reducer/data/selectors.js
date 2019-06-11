@@ -17,10 +17,12 @@ export const getActiveCard = (state) => {
   return state[NAME_SPACE].activeOfferId;
 };
 
-export const getCurrentOffer = createSelector(
+const stateMock = (state) => state;
+
+export const getCurrentOffer = (id) => createSelector(
     getOffers,
-    getCurrentId,
-    (offers, id) => {
+    stateMock,
+    (offers) => {
       return offers.find((it) => it.id === Number(id));
     }
 );

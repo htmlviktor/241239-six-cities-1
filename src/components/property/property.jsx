@@ -5,7 +5,7 @@ import Gallery from '../gallery/gallery.jsx';
 // import Map from '../map/map.jsx';
 import HotelDescription from '../hotel-description/hotel-description.jsx';
 import {connect} from 'react-redux';
-import {getOffers, getCurrentOffer} from '../../reducer/data/selectors';
+import {getCurrentOffer} from '../../reducer/data/selectors';
 
 class Property extends Component {
   constructor(props) {
@@ -14,7 +14,9 @@ class Property extends Component {
 
   render() {
     const {offer} = this.props;
-
+    if (!offer) {
+      return null;
+    }
     return (<React.Fragment>
       <Header />
       <main className="page__main page__main--property">
@@ -135,10 +137,9 @@ class Property extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, {offerId}) => {
   return {
-    offers: getOffers(state),
-    offer: getCurrentOffer(state)
+    offer: getCurrentOffer(offerId)(state),
   };
 };
 
