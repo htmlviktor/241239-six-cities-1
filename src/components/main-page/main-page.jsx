@@ -15,11 +15,13 @@ import {getCurrentOffers, getCitiesList} from '../../reducer/data/selectors.js';
 
 import {getCurrentCity} from '../../reducer/user/selectors.js';
 import Header from '../header/header.jsx';
+import SortingOption from '../sorting-option/sorting-option.jsx';
 
 const PlaceListWrapped = witchActiveItem(PlaceList);
 const CityListWrapped = witchActiveItem(CityList);
 
 const MainPage = ({offers, cities, onChangeCity, currentCity}) => {
+  console.log(offers)
   return <div>
     <Header />
     <main className="page__main page__main--index">
@@ -35,8 +37,12 @@ const MainPage = ({offers, cities, onChangeCity, currentCity}) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
 
+            <h2 className="visually-hidden">Places</h2>
+            <b className="places__found">{`${offers.length} places to stay in ${currentCity}`}</b>
+
+            <SortingOption />
+
             <PlaceListWrapped
-              city={currentCity}
               offers={offers} />
 
           </section>

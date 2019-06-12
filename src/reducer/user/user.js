@@ -44,6 +44,7 @@ const Operation = {
     return api.get(`/login`).then(({data}) => {
       dispatch(ActionCreator.userSaveData(data));
       dispatch(ActionCreator.userLogin());
+
     });
   }
 };

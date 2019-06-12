@@ -9,7 +9,7 @@ export const createAPI = (onLoginFail) => {
 
   const onSuccess = (responce) => responce;
   const onFail = (err) => {
-    if (err.status === 403) {
+    if (err.response.status === 403) {
       onLoginFail();
       return;
     }
