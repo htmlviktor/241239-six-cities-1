@@ -21,7 +21,6 @@ const PlaceListWrapped = witchActiveItem(PlaceList);
 const CityListWrapped = witchActiveItem(CityList);
 
 const MainPage = ({offers, cities, onChangeCity, currentCity}) => {
-  console.log(offers)
   return <div>
     <Header />
     <main className="page__main page__main--index">
