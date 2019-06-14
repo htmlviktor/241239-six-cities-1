@@ -7,7 +7,7 @@ import Reviews from '../reviews/reviews.jsx';
 import AddReviews from '../add-reviews/add-reviews.jsx';
 import HotelDescription from '../hotel-description/hotel-description.jsx';
 import {connect} from 'react-redux';
-import {getCurrentOffer, getReviewsList, getCurrentOffers} from '../../reducer/data/selectors';
+import {getCurrentOffer, getReviewsList, getOffers} from '../../reducer/data/selectors';
 import {Operation} from '../../reducer/data/data';
 
 class Property extends Component {
@@ -21,7 +21,7 @@ class Property extends Component {
   }
 
   render() {
-    const {offer, reviews} = this.props;
+    const {offer, reviews, allOffers} = this.props;
     if (!offer) {
       return null;
     }
@@ -155,6 +155,7 @@ const mapStateToProps = (state, {offerId}) => {
   return {
     offer: getCurrentOffer(offerId)(state),
     reviews: getReviewsList(state),
+    allOffers: getOffers(state)
   };
 };
 
