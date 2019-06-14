@@ -45,7 +45,7 @@ export const getCurrentCityLocation = createSelector(
 export const getCitiesList = createSelector(
     getOffers,
     (offers) => {
-      return new Set([...offers.map((offer) => offer.city.name)]);
+      return new Set([...offers.map((offer) => offer.city.name).sort()]);
     }
 );
 

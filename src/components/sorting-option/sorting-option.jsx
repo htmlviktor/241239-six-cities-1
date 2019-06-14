@@ -1,53 +1,20 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-
-import {ActionCreator} from '../../reducer/data/data';
-import {getOffers} from '../../reducer/data/selectors';
 
 class SortingOption extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      isOpenMenu: false
-    };
-
-  }
-
-  _sortByHight(offers) {
-    const {sortByHight} = this.props;
-    const sortOffers = [...offers].sort((a, b) => {
-      return b.price - a.price;
-    });
-    sortByHight(sortOffers);
-  }
-
-  _sortByLow(offers) {
-    const {sortByHight} = this.props;
-    const sortOffers = [...offers].sort((a, b) => {
-      return a.price - b.price;
-    });
-    sortByHight(sortOffers);
-  }
-
-  _sortByRated(offers) {
-    const {sortByHight} = this.props;
-    const sortOffers = [...offers].sort((a, b) => {
-      return b.rating - a.rating;
-    });
-    sortByHight(sortOffers);
   }
 
   render() {
-    const {isOpenMenu} = this.state;
+    const {statusMenu, changeMenu, sorting} = this.props;
     return <React.Fragment>
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span
           onClick={() => {
-            this.setState({isOpenMenu: !this.state.isOpenMenu});
+            changeMenu();
           }}
           className="places__sorting-type"
           tabIndex={0}>
@@ -56,23 +23,23 @@ class SortingOption extends Component {
             <use xlinkHref="#icon-arrow-select" />
           </svg>
         </span>
-        <ul className={`places__options places__options--custom ${isOpenMenu ? `places__options--opened` : ``}`}>
+        <ul className={`places__options places__options--custom ${statusMenu ? `places__options--opened` : ``}`}>
           <li className="places__option places__option--active" tabIndex={0}>Popular</li>
           <li
             onClick={() => {
-              this._sortByLow(this.props.offers);
+              sorting(`lowCost`);
             }}
             className="places__option"
             tabIndex={0}>Price: low to high</li>
           <li
             onClick={() => {
-              this._sortByHight(this.props.offers);
+              sorting(`highCost`);
             }}
             className="places__option"
             tabIndex={0}>Price: high to low</li>
           <li
             onClick={() => {
-              this._sortByRated(this.props.offers);
+              sorting(`raiting`);
             }}
             className="places__option"
             tabIndex={0}>Top rated first</li>
@@ -90,17 +57,10 @@ class SortingOption extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  sortByHight: (offers) => dispatch(ActionCreator.loadOffers(offers)),
-});
-
 SortingOption.propTypes = {
-  sortByHight: PropTypes.func,
-  offers: PropTypes.array
+  changeMenu: PropTypes.func,
+  statusMenu: PropTypes.bool,
+  sorting: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SortingOption);
+export default SortingOption;

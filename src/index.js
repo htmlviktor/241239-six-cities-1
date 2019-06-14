@@ -14,7 +14,7 @@ import App from './components/app/app.jsx';
 import {Operation} from './reducer/data/data';
 import {Operation as OperationUser} from './reducer/user/user';
 
-const api = createAPI(() => history.pushState(null, null, `/login`));
+const api = createAPI();
 
 const store = createStore(
     reducer,

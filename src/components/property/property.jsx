@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header.jsx';
 import Gallery from '../gallery/gallery.jsx';
-// import Map from '../map/map.jsx';
+import Map from '../map/map.jsx';
 import HotelDescription from '../hotel-description/hotel-description.jsx';
 import {connect} from 'react-redux';
 import {getCurrentOffer} from '../../reducer/data/selectors';
@@ -29,7 +29,7 @@ class Property extends Component {
 
           </div>
           <section className="property__map map" />
-          {/* <Map offer={offer}/> */}
+          <Map offers={offer}/>
         </section>
         <div className="container">
           <section className="near-places places">

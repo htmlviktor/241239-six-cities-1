@@ -3,7 +3,7 @@ import {adapter} from './adapter';
 const initialState = {
   offers: [],
   activeOfferId: null,
-  currentOfferId: 1,
+  currentOfferId: null,
 };
 
 export const ActionType = {

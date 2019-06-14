@@ -67,7 +67,7 @@ class Map extends Component {
 
   render() {
     return (
-      <div className="cities__map" id="map" style={{height: `100%`}}/>
+      <div className="cities__map" id="map" style={{height: `100%`}} />
     );
   }
 }
