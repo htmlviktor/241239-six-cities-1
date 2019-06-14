@@ -21,7 +21,7 @@ class Property extends Component {
   }
 
   render() {
-    const {offer, reviews, allOffers} = this.props;
+    const {offer, reviews} = this.props;
     if (!offer) {
       return null;
     }
