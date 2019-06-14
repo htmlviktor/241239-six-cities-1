@@ -21,7 +21,9 @@ class Map extends Component {
     }
   }
   _initMap() {
-    const city = [39.61, -105.02];
+    console.log('Init')
+    const cityLocation = this.props.offers[1].city.location;
+    const city = cityLocation;
     this._map = leaflet.map(`map`, {
       center: city,
       zoom: this._zoom,
@@ -38,10 +40,12 @@ class Map extends Component {
   }
 
   componentDidMount() {
+    console.log('Mount')
     this._initMap();
   }
 
   componentDidUpdate(prevProps) {
+    console.log('Update')
     const customIcon = leaflet.icon({
       iconUrl: `img/marker-icon-active.png`,
       iconSize: [25, 41],
@@ -53,6 +57,7 @@ class Map extends Component {
     });
 
     if (prevProps.activeCard !== this.props.activeCard) {
+      console.log('Update')
       const {activeCard, offers} = this.props;
       this._group.clearLayers();
       offers.forEach((item, index) => {

@@ -21,10 +21,13 @@ class Property extends Component {
   }
 
   render() {
-    const {offer, reviews} = this.props;
+    const {offer, reviews, allOffers} = this.props;
     if (!offer) {
       return null;
     }
+    const offersOfCity = allOffers.filter((it) => {
+      return it.city.name === offer.city.name;
+    });
     return (<React.Fragment>
       <Header />
       <main className="page__main page__main--property">
@@ -42,7 +45,7 @@ class Property extends Component {
             </div>
           </div>
           <section className="property__map map" >
-            <Map offers={offer}/>
+            <Map offers={offersOfCity}/>
           </section>
         </section>
         <div className="container">
