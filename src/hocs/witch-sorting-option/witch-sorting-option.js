@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getOffers} from '../../reducer/data/selectors';
 import {ActionCreator} from '../../reducer/data/data';
@@ -18,7 +19,6 @@ const witchSortingOption = (Component) => {
 
     _onSorting(option) {
       const {allOffers, sorting} = this.props;
-      console.log(allOffers)
       switch (option) {
         case `highCost`:
           sorting([...allOffers].sort((a, b) => {
@@ -35,6 +35,11 @@ const witchSortingOption = (Component) => {
             return b.rating - a.rating;
           }));
           break;
+        case `popular`:
+          sorting([...allOffers].sort((a, b) => {
+            return a.rating - b.rating;
+          }));
+          break;
       }
     }
 
@@ -47,7 +52,7 @@ const witchSortingOption = (Component) => {
 
     render() {
       return <Component
-        sorting={this._onSorting}
+        onSort={this._onSorting}
         statusMenu={this.state.isOpenMenu}
         changeMenu={this._changeStatus}
         {...this.props}/>;
@@ -61,6 +66,11 @@ const witchSortingOption = (Component) => {
   const mapDispatchToProps = (dispatch) => ({
     sorting: (offers) => dispatch(ActionCreator.loadOffers(offers)),
   });
+
+  WitchSortingOption.propTypes = {
+    allOffers: PropTypes.array,
+    sorting: PropTypes.func
+  };
 
   return connect(mapStateToProps, mapDispatchToProps)(WitchSortingOption);
 };

@@ -41,10 +41,11 @@ const Operation = {
       });
   },
   userSaveCockie: () => (dispatch, _getState, api) => {
-    return api.get(`/login`).then(({data}) => {
-      dispatch(ActionCreator.userSaveData(data));
-      dispatch(ActionCreator.userLogin());
-
+    return api.get(`/login`).then(({data, status}) => {
+      if (status === 200) {
+        dispatch(ActionCreator.userSaveData(data));
+        dispatch(ActionCreator.userLogin());
+      }
     });
   }
 };
