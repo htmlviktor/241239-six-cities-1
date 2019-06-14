@@ -9,6 +9,10 @@ export const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
+export const getReviewsList = (state) => {
+  return state[NAME_SPACE].reviews;
+};
+
 export const getCurrentId = (state) => {
   return state[NAME_SPACE].currentOfferId;
 };

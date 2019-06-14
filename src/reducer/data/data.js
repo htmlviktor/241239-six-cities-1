@@ -4,15 +4,23 @@ const initialState = {
   offers: [],
   activeOfferId: null,
   currentOfferId: null,
+  reviews: []
 };
 
 export const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   CURRENT_OFFER: `CURRENT_OFFER`,
-  ACTIVE_OFFER: `ACTIVE_OFFER`
+  ACTIVE_OFFER: `ACTIVE_OFFER`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`
 };
 
 const ActionCreator = {
+  loadReviews: (reviews) => {
+    return {
+      type: ActionType.LOAD_REVIEWS,
+      reviews
+    };
+  },
   loadOffers: (offers) => {
     return {
       type: ActionType.LOAD_OFFERS,
@@ -39,11 +47,21 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadOffers(adapter(response.data)));
       });
+  },
+  loadReviews: (hotel) => (dispatch, _getState, api) => {
+    return api.get(`/comments/${hotel}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadReviews(response.data));
+      });
   }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case `LOAD_REVIEWS`:
+      return Object.assign({}, state, {
+        reviews: action.reviews
+      });
     case `LOAD_OFFERS`:
       return Object.assign({}, state, {
         offers: action.offers

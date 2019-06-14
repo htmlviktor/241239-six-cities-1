@@ -3,17 +3,25 @@ import PropTypes from 'prop-types';
 import Header from '../header/header.jsx';
 import Gallery from '../gallery/gallery.jsx';
 import Map from '../map/map.jsx';
+import Reviews from '../reviews/reviews.jsx';
+import AddReviews from '../add-reviews/add-reviews.jsx';
 import HotelDescription from '../hotel-description/hotel-description.jsx';
 import {connect} from 'react-redux';
-import {getCurrentOffer} from '../../reducer/data/selectors';
+import {getCurrentOffer, getReviewsList, getCurrentOffers} from '../../reducer/data/selectors';
+import {Operation} from '../../reducer/data/data';
 
 class Property extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    const {offerId, getReviews} = this.props;
+    getReviews(offerId);
+  }
+
   render() {
-    const {offer} = this.props;
+    const {offer, reviews} = this.props;
     if (!offer) {
       return null;
     }
@@ -25,11 +33,17 @@ class Property extends Component {
             <Gallery images={offer.images}/>
           </div>
           <div className="property__container container">
-            <HotelDescription offer={offer}/>
-
+            <div className="property__wrapper">
+              <HotelDescription offer={offer}/>
+              <section className="property__reviews reviews">
+                <Reviews reviews={reviews}/>
+                <AddReviews />
+              </section>
+            </div>
           </div>
-          <section className="property__map map" />
-          <Map offers={offer}/>
+          <section className="property__map map" >
+            <Map offers={offer}/>
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -140,11 +154,21 @@ class Property extends Component {
 const mapStateToProps = (state, {offerId}) => {
   return {
     offer: getCurrentOffer(offerId)(state),
+    reviews: getReviewsList(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getReviews: (hotel) => dispatch(Operation.loadReviews(hotel)),
   };
 };
 
 Property.propTypes = {
-  offer: PropTypes.object
+  offer: PropTypes.object,
+  offerId: PropTypes.string,
+  getReviews: PropTypes.func,
+  reviews: PropTypes.array
 };
 
-export default connect(mapStateToProps)(Property);
+export default connect(mapStateToProps, mapDispatchToProps)(Property);
