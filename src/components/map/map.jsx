@@ -1,58 +1,96 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import leaflet from 'leaflet';
 
-export default class Map extends Component {
+import {getCurrentCity} from '../../reducer/user/selectors';
+import {getCurrentOffers, getCurrentCityLocation, getActiveCard} from '../../reducer/data/selectors';
+
+class Map extends Component {
   constructor(props) {
     super(props);
-    this.container = React.createRef();
 
-    this.map = null;
-    this.cityLocation = null;
+    this._zoom = 12;
+    this._group = null;
+  }
+
+  _addMarkers() {
+    this._group = leaflet.layerGroup().addTo(this._map);
+    for (let item of this.props.offers) {
+      leaflet.marker(item.location).addTo(this._group);
+    }
+  }
+  _initMap() {
+    console.log('Init')
+
+    const city = this.props.cityLocation;
+    this._map = leaflet.map(`map`, {
+      center: city,
+      zoom: this._zoom,
+      zoomControl: false,
+      marker: true
+    });
+    this._map.setView(city, this._zoom);
+    leaflet
+        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+        })
+        .addTo(this._map);
+    this._addMarkers();
+  }
+
+  componentDidMount() {
+
+    this._initMap();
+  }
+
+  componentDidUpdate(prevProps) {
+
+    const customIcon = leaflet.icon({
+      iconUrl: `img/marker-icon-active.png`,
+      iconSize: [25, 41],
+    });
+    this._group.clearLayers();
+    this._map.setView(this.props.cityLocation, this._zoom);
+    this.props.offers.forEach((item) => {
+      leaflet.marker(item.location).addTo(this._group);
+    });
+
+    if (prevProps.activeCard !== this.props.activeCard) {
+
+      const {activeCard, offers} = this.props;
+      this._group.clearLayers();
+      offers.forEach((item, index) => {
+        if (activeCard === index) {
+          leaflet.marker(offers[activeCard].location, {icon: customIcon}).addTo(this._group);
+        } else {
+          leaflet.marker(item.location).addTo(this._group);
+        }
+      });
+    }
   }
 
   render() {
     return (
-      <div
-        style={{height: `100%`}}
-        ref={this.container}
-        id="map">
-      </div>
+      <div className="cities__map" id="map" style={{height: `100%`}} />
     );
-  }
-
-  componentDidMount() {
-    const {cards} = this.props;
-    const city = [52.38333, 4.9];
-    const icon = leaflet.icon({
-      iconUrl: `img/map-pin.svg`,
-      iconSize: [30, 30]
-    });
-
-    const zoom = 12;
-    this.map = leaflet.map(this.container.current, {
-      center: city,
-      zoom,
-      zoomControl: false,
-      marker: true
-    });
-    this.map.setView(city, zoom);
-
-    leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
-      .addTo(this.map);
-    cards.forEach((card) => {
-      leaflet
-        .marker(card.location, {icon})
-        .addTo(this.map);
-    });
   }
 }
 
+
 Map.propTypes = {
-  cards: PropTypes.array,
-  currentCity: PropTypes.string
+  offers: PropTypes.array,
+  currentCity: PropTypes.string,
+  cityLocation: PropTypes.array,
+  activeCard: PropTypes.number
 };
 
+const mapStateToProps = (state) => {
+  return {
+    activeCity: getCurrentCity(state),
+    cityLocation: getCurrentCityLocation(state),
+    activeCard: getActiveCard(state),
+  };
+};
+
+export default connect(mapStateToProps)(Map);
