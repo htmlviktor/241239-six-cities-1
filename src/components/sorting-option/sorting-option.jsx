@@ -8,7 +8,7 @@ class SortingOption extends Component {
   }
 
   render() {
-    const {statusMenu, changeMenu, onSort} = this.props;
+    const {statusMenu, changeMenu, onSort, activeItem} = this.props;
     return <React.Fragment>
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
@@ -26,25 +26,29 @@ class SortingOption extends Component {
             onClick={() => {
               onSort(`popular`);
             }}
-            className="places__option places__option--active"
+            key={1}
+            className={`places__option ${activeItem === 1 ? `places__option--active` : ``}`}
             tabIndex={0}>Popular</li>
           <li
             onClick={() => {
               onSort(`lowCost`);
             }}
-            className="places__option"
+            key={2}
+            className={`places__option ${activeItem === 2 ? `places__option--active` : ``}`}
             tabIndex={0}>Price: low to high</li>
           <li
             onClick={() => {
               onSort(`highCost`);
             }}
-            className="places__option"
+            key={3}
+            className={`places__option ${activeItem === 3 ? `places__option--active` : ``}`}
             tabIndex={0}>Price: high to low</li>
           <li
             onClick={() => {
               onSort(`rainting`);
             }}
-            className="places__option"
+            key={4}
+            className={`places__option ${activeItem === 4 ? `places__option--active` : ``}`}
             tabIndex={0}>Top rated first</li>
         </ul>
         {/*
@@ -63,7 +67,8 @@ class SortingOption extends Component {
 SortingOption.propTypes = {
   changeMenu: PropTypes.func,
   statusMenu: PropTypes.bool,
-  onSort: PropTypes.func
+  onSort: PropTypes.func,
+  activeItem: PropTypes.number
 };
 
 export default SortingOption;
