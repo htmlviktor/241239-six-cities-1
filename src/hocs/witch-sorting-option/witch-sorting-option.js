@@ -11,6 +11,7 @@ const witchSortingOption = (Component) => {
 
       this.state = {
         isOpenMenu: false,
+        activeItem: 1
       };
 
       this._changeStatus = this._changeStatus.bind(this);
@@ -21,21 +22,25 @@ const witchSortingOption = (Component) => {
       const {allOffers, sorting} = this.props;
       switch (option) {
         case `highCost`:
+          this.setState({activeItem: 3});
           sorting([...allOffers].sort((a, b) => {
             return b.price - a.price;
           }));
           break;
         case `lowCost`:
+          this.setState({activeItem: 2});
           sorting([...allOffers].sort((a, b) => {
             return a.price - b.price;
           }));
           break;
         case `rainting`:
+          this.setState({activeItem: 4});
           sorting([...allOffers].sort((a, b) => {
             return b.rating - a.rating;
           }));
           break;
         case `popular`:
+          this.setState({activeItem: 1});
           sorting([...allOffers].sort((a, b) => {
             return a.rating - b.rating;
           }));
@@ -53,6 +58,7 @@ const witchSortingOption = (Component) => {
     render() {
       return <Component
         onSort={this._onSorting}
+        activeItem={this.state.activeItem}
         statusMenu={this.state.isOpenMenu}
         changeMenu={this._changeStatus}
         {...this.props}/>;
