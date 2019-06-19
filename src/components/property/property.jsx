@@ -7,7 +7,7 @@ import Reviews from '../reviews/reviews.jsx';
 import AddReviews from '../add-reviews/add-reviews.jsx';
 import HotelDescription from '../hotel-description/hotel-description.jsx';
 import {connect} from 'react-redux';
-import {getCurrentOffer, getReviewsList, getOffers} from '../../reducer/data/selectors';
+import {getCurrentOffer, getReviewsList, getOffers, getNearOffers} from '../../reducer/data/selectors';
 import {Operation} from '../../reducer/data/data';
 import PlaceList from '../../components/place-list/place-list.jsx';
 
@@ -22,13 +22,10 @@ class Property extends Component {
   }
 
   render() {
-    const {offer, reviews, allOffers} = this.props;
+    const {offer, reviews, nearOffers} = this.props;
     if (!offer) {
       return null;
     }
-    const offersOfCity = allOffers.filter((it) => {
-      return it.city.name === offer.city.name;
-    }).splice(0, 3);
     return (<React.Fragment>
       <Header />
       <main className="page__main page__main--property">
@@ -47,14 +44,14 @@ class Property extends Component {
           </div>
           <section className="property__map map" >
             <Map
-              offers={offersOfCity}/>
+              offers={nearOffers}/>
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceList offers={offersOfCity}/>
+              <PlaceList offers={nearOffers}/>
             </div>
           </section>
         </div>
@@ -68,7 +65,8 @@ const mapStateToProps = (state, {offerId}) => {
   return {
     offer: getCurrentOffer(offerId)(state),
     reviews: getReviewsList(state),
-    allOffers: getOffers(state)
+    allOffers: getOffers(state),
+    nearOffers: getNearOffers(state)
   };
 };
 
@@ -80,9 +78,10 @@ const mapDispatchToProps = (dispatch) => {
 
 Property.propTypes = {
   offer: PropTypes.object,
-  offerId: PropTypes.string,
+  nearOffers: PropTypes.array,
   getReviews: PropTypes.func,
-  reviews: PropTypes.array
+  reviews: PropTypes.array,
+  offerId: PropTypes.string
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Property);

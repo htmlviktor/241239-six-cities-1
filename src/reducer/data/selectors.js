@@ -39,6 +39,13 @@ export const getCurrentOffers = createSelector(
     }
 );
 
+export const getNearOffers = createSelector(
+    getCurrentOffers,
+    (offers) => {
+      return offers.splice(0, 3);
+    }
+);
+
 export const getCurrentCityLocation = createSelector(
     getCurrentOffers,
     (offers) => {
