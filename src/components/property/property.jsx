@@ -7,9 +7,13 @@ import Reviews from '../reviews/reviews.jsx';
 import AddReviews from '../add-reviews/add-reviews.jsx';
 import HotelDescription from '../hotel-description/hotel-description.jsx';
 import {connect} from 'react-redux';
-import {getCurrentOffer, getReviewsList, getOffers, getNearOffers} from '../../reducer/data/selectors';
+import {getCurrentOffer, getReviewsList, getNearOffers} from '../../reducer/data/selectors';
+import {getAutorizationStatus} from '../../reducer/user/selectors';
 import {Operation} from '../../reducer/data/data';
 import PlaceList from '../../components/place-list/place-list.jsx';
+import withAddComments from '../../hocs/with-add-comment/with-add-comment';
+
+const AddReviewsWrapped = withAddComments(AddReviews);
 
 class Property extends Component {
   constructor(props) {
@@ -22,7 +26,7 @@ class Property extends Component {
   }
 
   render() {
-    const {offer, reviews, nearOffers} = this.props;
+    const {offer, reviews, nearOffers, isAuthorization, offerId} = this.props;
     if (!offer) {
       return null;
     }
@@ -38,7 +42,7 @@ class Property extends Component {
               <HotelDescription offer={offer}/>
               <section className="property__reviews reviews">
                 <Reviews reviews={reviews}/>
-                <AddReviews />
+                {isAuthorization ? <AddReviewsWrapped hottelId={offerId}/> : null}
               </section>
             </div>
           </div>
@@ -65,8 +69,8 @@ const mapStateToProps = (state, {offerId}) => {
   return {
     offer: getCurrentOffer(offerId)(state),
     reviews: getReviewsList(state),
-    allOffers: getOffers(state),
-    nearOffers: getNearOffers(state)
+    nearOffers: getNearOffers(state),
+    isAuthorization: getAutorizationStatus(state)
   };
 };
 
@@ -81,7 +85,8 @@ Property.propTypes = {
   nearOffers: PropTypes.array,
   getReviews: PropTypes.func,
   reviews: PropTypes.array,
-  offerId: PropTypes.string
+  offerId: PropTypes.string,
+  isAuthorization: PropTypes.bool
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Property);

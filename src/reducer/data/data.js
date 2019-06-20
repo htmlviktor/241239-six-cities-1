@@ -53,6 +53,14 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
       });
+  },
+  uploadComment: (rating, comment, hottelId) => (dispatch, _getState, api) => {
+    return api.post(`/comments/${hottelId}`, {rating, comment})
+      .then(({status, data}) => {
+        if (status === 200) {
+          dispatch(ActionCreator.loadReviews(data));
+        }
+      });
   }
 };
 
