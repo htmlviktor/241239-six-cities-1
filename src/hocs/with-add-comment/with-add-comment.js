@@ -28,7 +28,7 @@ const withAddComment = (Component) => {
     }
 
     _activeButton() {
-      if (this.state.comment.length >= 50) {
+      if (this.state.comment.length >= 50 && this.state.comment.length <= 300) {
         this.setState({activeSubmit: true});
       } else {
         this.setState({activeSubmit: false});

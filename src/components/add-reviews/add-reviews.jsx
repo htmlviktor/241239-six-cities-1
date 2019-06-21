@@ -7,6 +7,7 @@ const AddReviews = ({onChangeRating, onChangeText, activeSubmit, onSubmit}) => {
       onSubmit={(evt) => {
         evt.preventDefault();
         onSubmit();
+        evt.target.reset();
       }}
       className="reviews__form form"
       action="#"
