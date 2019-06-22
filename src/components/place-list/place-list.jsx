@@ -8,13 +8,14 @@ export default class PlaceList extends PureComponent {
   }
 
   render() {
-    const {offers, onActiveItemChange} = this.props;
+    const {offers, onActiveItemChange, addFeatures} = this.props;
     return (
       <React.Fragment>
         <div className="cities__places-list places__list tabs__content">
           {offers.map((card, index) => {
 
             return <PlaceCard
+              addFeatures={addFeatures}
               onClickActiveCard={(id) => {
                 onActiveItemChange(id);
               }}

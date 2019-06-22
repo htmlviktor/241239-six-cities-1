@@ -15,8 +15,9 @@ export default class PlaceCard extends Component {
       degree,
       previewImage,
       isPremium,
+      isFavorite,
       price} = this.props.data;
-    const {onHover, onClickActiveCard, activeIndex} = this.props;
+    const {onHover, onClickActiveCard, activeIndex, addFeatures} = this.props;
     return (
       <article
         onMouseEnter={onHover}
@@ -45,9 +46,18 @@ export default class PlaceCard extends Component {
               <b className="place-card__price-value">€{price}</b>
               <span className="place-card__price-text">/&nbsp;night</span>
             </div>
-            <button className="place-card__bookmark-button button" type="button">
+            <button
+              onClick={() => {
+                if (isFavorite) {
+                  addFeatures(id, 0);  
+                } else {
+                  addFeatures(id, 1);
+                }
+              }}
+              className="place-card__bookmark-button button"
+              type="button">
               <svg className="place-card__bookmark-icon" width={18} height={19}>
-                <use xlinkHref="#icon-bookmark" />
+                <use xlinkHref={isFavorite ? `#icon-bookmark--active` : `#icon-bookmark`} />
               </svg>
               <span className="visually-hidden">To bookmarks</span>
             </button>

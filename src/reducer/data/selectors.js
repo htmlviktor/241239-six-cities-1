@@ -17,6 +17,10 @@ export const getCurrentId = (state) => {
   return state[NAME_SPACE].currentOfferId;
 };
 
+export const getFavoritesOffers = (state) => {
+  return state[NAME_SPACE].favorite;
+}
+
 export const getActiveCard = (state) => {
   return state[NAME_SPACE].activeOfferId;
 };
