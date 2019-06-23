@@ -77,8 +77,8 @@ const Operation = {
         }
       });
   },
-  addFavoriteHotel: (hottelId, status) => (dispatch, _getState, api) => {
-    return api.post(`/favorite/${hottelId}/${status}`)
+  addFavoriteHotel: (hottelId, statusRequire) => (dispatch, _getState, api) => {
+    return api.post(`/favorite/${hottelId}/${statusRequire}`)
       .then(({status, data}) => {
         if (status === 200) {
           dispatch(ActionCreator.reloadOffers(adapterObj(data)));

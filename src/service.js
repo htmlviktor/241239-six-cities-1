@@ -1,16 +1,18 @@
-export const calcDistance = (lat1, lon1, lat2, lon2) => {
-  let radlat1 = Math.PI * lat1 / 180;
-  let radlat2 = Math.PI * lat2 / 180;
-  let theta = lon1 - lon2;
-  let radtheta = Math.PI * theta / 180;
-  let dist = Math.sin(radlat1) * Math.sin(radlat2) +
-    Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-  if (dist > 1) {
-    dist = 1;
+export const switchRating = (rating) => {
+  switch (rating) {
+    case 5:
+      return `100%`;
+    case 4:
+      return `80%`;
+    case 3:
+      return `60%`;
+    case 2:
+      return `40%`;
+    case 1:
+      return `20%`;
+    case 0:
+      return `0%`;
+    default:
+      return `0%`;
   }
-  dist = Math.acos(dist);
-  dist = dist * 180 / Math.PI;
-  dist = dist * 60 * 1.1515;
-  dist = dist * 1.609344;
-  return dist;
 };

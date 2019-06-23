@@ -12,8 +12,10 @@ import {getAutorizationStatus} from '../../reducer/user/selectors';
 import {Operation} from '../../reducer/data/data';
 import PlaceList from '../../components/place-list/place-list.jsx';
 import withAddComments from '../../hocs/with-add-comment/with-add-comment';
+import witchActiveItem from '../../hocs/witch-active-item/witch-active-item';
 
 const AddReviewsWrapped = withAddComments(AddReviews);
+const PlaceListWrapped = witchActiveItem(PlaceList);
 
 class Property extends Component {
   constructor(props) {
@@ -55,7 +57,7 @@ class Property extends Component {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceList offers={nearOffers}/>
+              <PlaceListWrapped offers={nearOffers}/>
             </div>
           </section>
         </div>

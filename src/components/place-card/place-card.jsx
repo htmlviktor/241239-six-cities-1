@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import ButtonFeature from '../../components/button-feature/button-feature.jsx';
-
+import Rating from '../rating/rating.jsx';
 export default class PlaceCard extends Component {
 
   constructor(props) {
@@ -16,6 +16,7 @@ export default class PlaceCard extends Component {
       type,
       previewImage,
       isPremium,
+      rating,
       isFavorite,
       price} = this.props.data;
     const {onHover, onClickActiveCard, activeIndex} = this.props;
@@ -55,7 +56,7 @@ export default class PlaceCard extends Component {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `93%`}} />
+              <Rating rating={rating}/>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>

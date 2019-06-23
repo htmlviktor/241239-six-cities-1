@@ -13,18 +13,20 @@ import App from './components/app/app.jsx';
 
 import {Operation} from './reducer/data/data';
 import {Operation as OperationUser} from './reducer/user/user';
+import history from './history';
 
-const api = createAPI();
-
-const store = createStore(
-    reducer,
-    compose(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-);
 
 const init = () => {
+  const api = createAPI(() => history.push(`/login`));
+
+  const store = createStore(
+      reducer,
+      compose(
+          applyMiddleware(thunk.withExtraArgument(api)),
+          window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      )
+  );
+
   store.dispatch(Operation.loadOffers());
   store.dispatch(OperationUser.userSaveCockie());
   ReactDOM.render(
