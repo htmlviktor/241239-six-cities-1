@@ -1,4 +1,4 @@
-import {adapter} from './adapter';
+import {adapter, adapterObj} from './adapter';
 
 const initialState = {
   offers: [],
@@ -46,7 +46,7 @@ const ActionCreator = {
     return {
       type: ActionType.RELOAD_OFFER,
       offer
-    }
+    };
   },
   loadFavotiresOffers: (offers) => {
     return {
@@ -79,8 +79,10 @@ const Operation = {
   },
   addFavoriteHotel: (hottelId, status) => (dispatch, _getState, api) => {
     return api.post(`/favorite/${hottelId}/${status}`)
-      .then((response) => {
-        console.log(response.data);
+      .then(({status, data}) => {
+        if (status === 200) {
+          dispatch(ActionCreator.reloadOffers(adapterObj(data)));
+        }
       });
   },
   loadFavoritesOffers: () => (dispatch, _getState, api) => {
@@ -111,7 +113,13 @@ const reducer = (state = initialState, action) => {
       });
     case `RELOAD_OFFER`:
       return Object.assign({}, state, {
-        offers: Object.assign({}, state.offers, action.offer)
+        offers: state.offers.map((content) => {
+          if (content.id === action.offer.id) {
+            return action.offer;
+          } else {
+            return content;
+          }
+        })
       });
     case `LOAD_FAV_OFFERS`:
       return Object.assign({}, state, {
