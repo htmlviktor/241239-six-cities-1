@@ -15,7 +15,6 @@ class Favorites extends React.Component {
     super(props);
   }
 
-
   componentDidMount() {
     this.props.loadOffers();
   }
