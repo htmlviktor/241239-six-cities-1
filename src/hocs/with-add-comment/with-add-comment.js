@@ -20,6 +20,7 @@ const withAddComment = (Component) => {
 
     _onChangeRating(value) {
       this.setState({rating: value});
+      this._activeButton();
     }
 
     _onChangeText(value) {
@@ -28,7 +29,7 @@ const withAddComment = (Component) => {
     }
 
     _activeButton() {
-      if (this.state.comment.length >= 50 && this.state.comment.length <= 300) {
+      if ((this.state.comment.length >= 50 && this.state.comment.length <= 300) && this.state.rating) {
         this.setState({activeSubmit: true});
       } else {
         this.setState({activeSubmit: false});
@@ -39,6 +40,15 @@ const withAddComment = (Component) => {
       const {upload, hottelId} = this.props;
       const {rating, comment} = this.state;
       upload(rating, comment, hottelId);
+      this.resetState();
+    }
+
+    resetState() {
+      this.setState({
+        rating: null,
+        comment: ``,
+        activeSubmit: false
+      });
     }
 
     render() {

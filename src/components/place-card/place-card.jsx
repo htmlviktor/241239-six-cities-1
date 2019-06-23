@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import ButtonFeature from '../../components/button-feature/button-feature.jsx';
 
 export default class PlaceCard extends Component {
 
@@ -12,12 +13,12 @@ export default class PlaceCard extends Component {
     const {
       id,
       title,
-      degree,
+      type,
       previewImage,
       isPremium,
       isFavorite,
       price} = this.props.data;
-    const {onHover, onClickActiveCard, activeIndex, addFeatures} = this.props;
+    const {onHover, onClickActiveCard, activeIndex} = this.props;
     return (
       <article
         onMouseEnter={onHover}
@@ -46,21 +47,11 @@ export default class PlaceCard extends Component {
               <b className="place-card__price-value">€{price}</b>
               <span className="place-card__price-text">/&nbsp;night</span>
             </div>
-            <button
-              onClick={() => {
-                if (isFavorite) {
-                  addFeatures(id, 0);  
-                } else {
-                  addFeatures(id, 1);
-                }
-              }}
-              className="place-card__bookmark-button button"
-              type="button">
-              <svg className="place-card__bookmark-icon" width={18} height={19}>
-                <use xlinkHref={isFavorite ? `#icon-bookmark--active` : `#icon-bookmark`} />
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <ButtonFeature
+              svgSize={18}
+              className={`place-card__bookmark-button`}
+              id={id}
+              isFavorite={isFavorite}/>
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
@@ -71,7 +62,7 @@ export default class PlaceCard extends Component {
           <h2 className="place-card__name">
             <Link to={`/offer/${id}`} >{title}</Link>
           </h2>
-          <p className="place-card__type">{degree}</p>
+          <p className="place-card__type">{type}</p>
         </div>
       </article>
     );
@@ -90,7 +81,8 @@ PlaceCard.propTypes = {
     photo: PropTypes.string,
     price: PropTypes.number,
     title: PropTypes.string,
-    isPremium: PropTypes.bool
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool
   }).isRequired,
 };
 
