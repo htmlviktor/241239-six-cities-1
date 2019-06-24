@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Correctly renders component 'App' 1`] = `
-Array [
+<div>
   <div
     style={
       Object {
@@ -31,6 +31,15 @@ Array [
         />
       </symbol>
       <symbol
+        id="icon-bookmark--active"
+        viewBox="0 0 17 18"
+      >
+        <path
+          d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"
+          fill="blue"
+        />
+      </symbol>
+      <symbol
         id="icon-star"
         viewBox="0 0 13 12"
       >
@@ -41,7 +50,7 @@ Array [
         />
       </symbol>
     </svg>
-  </div>,
+  </div>
   <header
     className="header"
   >
@@ -55,8 +64,9 @@ Array [
           className="header__left"
         >
           <a
-            className="header__logo-link"
-            href="main.html"
+            className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -78,13 +88,14 @@ Array [
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
                 />
                 <span
-                  className="header__login"
+                  className="header__user-name user__name"
                 >
                   Sign in
                 </span>
@@ -94,88 +105,127 @@ Array [
         </nav>
       </div>
     </div>
-  </header>,
+  </header>
   <main
-    className="page__main page__main--login"
+    className="page__main page__main--index "
   >
+    <h1
+      className="visually-hidden"
+    >
+      Cities
+    </h1>
     <div
-      className="page__login-container container"
+      className="cities tabs"
     >
       <section
-        className="login"
+        className="locations container"
       >
-        <h1
-          className="login__title"
-        >
-          Sign in
-        </h1>
-        <form
-          action="#"
-          className="login__form form"
-          method="post"
-          onSubmit={[Function]}
-        >
-          <div
-            className="login__input-wrapper form__input-wrapper"
-          >
-            <label
-              className="visually-hidden"
-            >
-              E-mail
-            </label>
-            <input
-              className="login__input form__input"
-              name="email"
-              onChange={[Function]}
-              placeholder="Email"
-              required={true}
-              type="email"
-              value=""
-            />
-          </div>
-          <div
-            className="login__input-wrapper form__input-wrapper"
-          >
-            <label
-              className="visually-hidden"
-            >
-              Password
-            </label>
-            <input
-              className="login__input form__input"
-              name="password"
-              onChange={[Function]}
-              placeholder="Password"
-              required={true}
-              type="password"
-              value=""
-            />
-          </div>
-          <button
-            className="login__submit form__submit button"
-            type="submit"
-          >
-            Sign in
-          </button>
-        </form>
-      </section>
-      <section
-        className="locations locations--login locations--current"
-      >
-        <div
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link"
-            href="#"
-          >
-            <span>
-              Amsterdam
-            </span>
-          </a>
-        </div>
+        <ul
+          className="locations__list tabs__list"
+        />
       </section>
     </div>
-  </main>,
-]
+    <div
+      className="cities__places-wrapper"
+    >
+      <div
+        className="cities__places-container container"
+      >
+        <section
+          className="cities__places places"
+        >
+          <h2
+            className="visually-hidden"
+          >
+            Places
+          </h2>
+          <b
+            className="places__found"
+          >
+            0 places to stay in Amsterdam
+          </b>
+          <form
+            action="#"
+            className="places__sorting"
+            method="get"
+          >
+            <span
+              className="places__sorting-caption"
+            >
+              Sort by
+            </span>
+            <span
+              className="places__sorting-type"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              Popular
+              <svg
+                className="places__sorting-arrow"
+                height={4}
+                width={7}
+              >
+                <use
+                  xlinkHref="#icon-arrow-select"
+                />
+              </svg>
+            </span>
+            <ul
+              className="places__options places__options--custom "
+            >
+              <li
+                className="places__option places__option--active"
+                onClick={[Function]}
+                tabIndex={0}
+              >
+                Popular
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={0}
+              >
+                Price: low to high
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={0}
+              >
+                Price: high to low
+              </li>
+              <li
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={0}
+              >
+                Top rated first
+              </li>
+            </ul>
+          </form>
+          <div
+            className="cities__places-list places__list tabs__content"
+          />
+        </section>
+        <div
+          className="cities__right-section"
+        >
+          <section
+            className="cities__map map"
+          >
+            <div
+              className="cities__map"
+              id="map"
+              style={
+                Object {
+                  "height": "100%",
+                }
+              }
+            />
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
 `;

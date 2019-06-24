@@ -6,6 +6,8 @@ import {Provider} from 'react-redux';
 
 import leaflet from 'leaflet';
 import reducer from '../../reducer/index';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 
 leaflet.map = () => ({
   setView: () => {},
@@ -29,9 +31,11 @@ it(`Correctly renders component 'App'`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App
-            data = {mock}
-          />
+          <Router history={history}>
+            <App
+              data = {mock}
+            />
+          </Router>
         </Provider>
     )
     .toJSON();

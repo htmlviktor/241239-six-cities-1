@@ -68,7 +68,7 @@ const withAddComment = (Component) => {
 
   WithAddComment.propTypes = {
     upload: PropTypes.func,
-    hottelId: PropTypes.number
+    hottelId: PropTypes.string
   };
 
   return connect(null, mapDispatchToProps)(WithAddComment);

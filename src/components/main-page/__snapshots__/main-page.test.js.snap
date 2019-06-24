@@ -31,6 +31,15 @@ exports[`Correctly render component MainPage 1`] = `
         />
       </symbol>
       <symbol
+        id="icon-bookmark--active"
+        viewBox="0 0 17 18"
+      >
+        <path
+          d="M3.993 2.185l.017-.092V2c0-.554.449-1 .99-1h10c.522 0 .957.41.997.923l-2.736 14.59-4.814-2.407-.39-.195-.408.153L1.31 16.44 3.993 2.185z"
+          fill="blue"
+        />
+      </symbol>
+      <symbol
         id="icon-star"
         viewBox="0 0 13 12"
       >
@@ -56,6 +65,8 @@ exports[`Correctly render component MainPage 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -77,7 +88,8 @@ exports[`Correctly render component MainPage 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -95,7 +107,7 @@ exports[`Correctly render component MainPage 1`] = `
     </div>
   </header>
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--index "
   >
     <h1
       className="visually-hidden"
@@ -144,6 +156,7 @@ exports[`Correctly render component MainPage 1`] = `
             </span>
             <span
               className="places__sorting-type"
+              onClick={[Function]}
               tabIndex={0}
             >
               Popular
@@ -158,28 +171,32 @@ exports[`Correctly render component MainPage 1`] = `
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom "
             >
               <li
                 className="places__option places__option--active"
+                onClick={[Function]}
                 tabIndex={0}
               >
                 Popular
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex={0}
               >
                 Price: low to high
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex={0}
               >
                 Price: high to low
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex={0}
               >
                 Top rated first
@@ -197,6 +214,7 @@ exports[`Correctly render component MainPage 1`] = `
             className="cities__map map"
           >
             <div
+              className="cities__map"
               id="map"
               style={
                 Object {
