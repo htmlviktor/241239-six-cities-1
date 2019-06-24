@@ -10,21 +10,12 @@ export default class PlaceCard extends Component {
   }
 
   render() {
-    const {
-      id,
-      title,
-      type,
-      previewImage,
-      isPremium,
-      rating,
-      isFavorite,
-      price} = this.props.data;
-    const {onHover, onClickActiveCard, activeIndex} = this.props;
+    const {onHover, onClickActiveCard, activeIndex, data} = this.props;
     return (
       <article
         onMouseEnter={onHover}
         className="cities__place-card place-card">
-        {isPremium ? <div className="place-card__mark">
+        {data.isPremium ? <div className="place-card__mark">
           <span>Premium</span>
         </div> : ``}
 
@@ -36,7 +27,7 @@ export default class PlaceCard extends Component {
                 onClickActiveCard(activeIndex);
               }}
               className="place-card__image"
-              src={previewImage}
+              src={data.previewImage}
               width={260}
               height={200}
               alt="Place image" />
@@ -45,25 +36,25 @@ export default class PlaceCard extends Component {
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
-              <b className="place-card__price-value">€{price}</b>
+              <b className="place-card__price-value">€{data.price}</b>
               <span className="place-card__price-text">/&nbsp;night</span>
             </div>
             <ButtonFeature
               svgSize={18}
               className={`place-card__bookmark-button`}
-              id={id}
-              isFavorite={isFavorite}/>
+              id={data.id}
+              isFavorite={data.isFavorite}/>
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <Rating rating={rating}/>
+              <Rating rating={data.rating}/>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <h2 className="place-card__name">
-            <Link to={`/offer/${id}`} >{title}</Link>
+            <Link to={`/offer/${data.id}`} >{data.title}</Link>
           </h2>
-          <p className="place-card__type">{type}</p>
+          <p className="place-card__type">{data.type}</p>
         </div>
       </article>
     );
@@ -83,7 +74,9 @@ PlaceCard.propTypes = {
     price: PropTypes.number,
     title: PropTypes.string,
     isPremium: PropTypes.bool,
-    isFavorite: PropTypes.bool
+    isFavorite: PropTypes.bool,
+    rating: PropTypes.number,
+    type: PropTypes.string
   }).isRequired,
 };
 

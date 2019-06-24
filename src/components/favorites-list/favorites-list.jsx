@@ -1,5 +1,6 @@
 import React from 'react';
 import FavoriteCard from '../favorites-card/favorite-card.jsx';
+import PropTypes from 'prop-types';
 
 const FavoriteList = ({offers, cities}) => {
   return <ul className="favorites__list">
@@ -21,6 +22,11 @@ const FavoriteList = ({offers, cities}) => {
       </li>;
     })}
   </ul>;
+};
+
+FavoriteList.propTypes = {
+  offers: PropTypes.array,
+  cities: PropTypes.object
 };
 
 export default FavoriteList;

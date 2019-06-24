@@ -34,7 +34,8 @@ export default class PlaceList extends PureComponent {
 PlaceList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   city: PropTypes.string,
-  onActiveItemChange: PropTypes.func
+  onActiveItemChange: PropTypes.func,
+  addFeatures: PropTypes.func
 };
 
 

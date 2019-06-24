@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonFeature from '../button-feature/button-feature.jsx';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const FavoriteCard = ({offer}) => {
   return <React.Fragment>
@@ -38,6 +39,10 @@ const FavoriteCard = ({offer}) => {
       </div>
     </article>
   </React.Fragment>;
+};
+
+FavoriteCard.propTypes = {
+  offer: PropTypes.object
 };
 
 export default FavoriteCard;

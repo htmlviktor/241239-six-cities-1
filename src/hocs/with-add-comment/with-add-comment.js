@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Operation} from '../../reducer/data/data';
+import PropTypes from 'prop-types';
 
 const withAddComment = (Component) => {
   class WithAddComment extends React.Component {
@@ -64,6 +65,11 @@ const withAddComment = (Component) => {
   const mapDispatchToProps = (dispatch) => ({
     upload: (rating, comment, hottelId) => dispatch(Operation.uploadComment(rating, comment, hottelId))
   });
+
+  WithAddComment.propTypes = {
+    upload: PropTypes.func,
+    hottelId: PropTypes.number
+  };
 
   return connect(null, mapDispatchToProps)(WithAddComment);
 };

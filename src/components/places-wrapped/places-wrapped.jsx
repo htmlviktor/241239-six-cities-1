@@ -12,7 +12,7 @@ import witchActiveItem from '../../hocs/witch-active-item/witch-active-item';
 const PlaceListWrapped = witchActiveItem(PlaceList);
 const SortingOptionWrapped = witchSortingOption(SortingOption);
 
-const PlacesWrapped = ({offers, currentCity, addFavoretes}) => {
+const PlacesWrapped = ({offers, currentCity}) => {
   return <React.Fragment>
     <div className="cities__places-wrapper">
       <div className="cities__places-container container">

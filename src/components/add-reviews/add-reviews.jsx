@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const AddReviews = ({onChangeRating, onChangeText, activeSubmit, onSubmit}) => {
 
@@ -66,6 +67,13 @@ const AddReviews = ({onChangeRating, onChangeText, activeSubmit, onSubmit}) => {
       </div>
     </form>
   </React.Fragment>;
+};
+
+AddReviews.propTypes = {
+  onChangeRating: PropTypes.func,
+  onChangeText: PropTypes.func,
+  activeSubmit: PropTypes.bool,
+  onSubmit: PropTypes.func
 };
 
 export default AddReviews;
