@@ -1,0 +1,4 @@
+
+it(`Test Favorites Component `, () => {
+
+});

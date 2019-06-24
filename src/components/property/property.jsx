@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header.jsx';
 import Gallery from '../gallery/gallery.jsx';
@@ -17,7 +17,7 @@ import witchActiveItem from '../../hocs/witch-active-item/witch-active-item';
 const AddReviewsWrapped = withAddComments(AddReviews);
 const PlaceListWrapped = witchActiveItem(PlaceList);
 
-class Property extends Component {
+class Property extends PureComponent {
   constructor(props) {
     super(props);
   }

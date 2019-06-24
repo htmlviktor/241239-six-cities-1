@@ -10,7 +10,7 @@ import Header from '../../components/header/header.jsx';
 import FavoriteList from '../favorites-list/favorites-list.jsx';
 import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 
-class Favorites extends React.Component {
+class Favorites extends React.PureComponent {
   constructor(props) {
     super(props);
   }

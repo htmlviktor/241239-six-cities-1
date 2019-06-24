@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import ButtonFeature from '../../components/button-feature/button-feature.jsx';
 import Rating from '../rating/rating.jsx';
-export default class PlaceCard extends Component {
+
+export default class PlaceCard extends PureComponent {
 
   constructor(props) {
     super(props);

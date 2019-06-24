@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import leaflet from 'leaflet';
@@ -6,7 +6,7 @@ import leaflet from 'leaflet';
 import {getCurrentCity} from '../../reducer/user/selectors';
 import {getCurrentCityLocation, getActiveCard} from '../../reducer/data/selectors';
 
-class Map extends Component {
+class Map extends PureComponent {
   constructor(props) {
     super(props);
 

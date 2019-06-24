@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Operation} from '../../reducer/data/data';
 import {connect} from 'react-redux';
 
-class ButtonFeature extends React.Component {
+class ButtonFeature extends React.PureComponent {
   constructor(props) {
     super(props);
 
