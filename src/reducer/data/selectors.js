@@ -13,9 +13,6 @@ export const getReviewsList = (state) => {
   return state[NAME_SPACE].reviews;
 };
 
-export const getCurrentId = (state) => {
-  return state[NAME_SPACE].currentOfferId;
-};
 
 export const getFavoritesOffers = (state) => {
   return state[NAME_SPACE].favorite;
