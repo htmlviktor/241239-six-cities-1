@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Rating from '../rating/rating.jsx';
 
 const Reviews = ({reviews}) => {
+
   const reviewsList = reviews.map((review, index) => {
     return <li className="reviews__item" key={index}>
       <div className="reviews__user user">
@@ -13,7 +15,7 @@ const Reviews = ({reviews}) => {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: `94%`}} />
+            <Rating rating={review.rating}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -32,6 +34,7 @@ const Reviews = ({reviews}) => {
 
 Reviews.propTypes = {
   reviews: PropTypes.array,
+  rating: PropTypes.number
 };
 
 export default Reviews;

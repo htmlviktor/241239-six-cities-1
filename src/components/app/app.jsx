@@ -12,7 +12,8 @@ import witchPrivateRoute from '../../hocs/witch-private-route/witch-private-rout
 import {connect} from 'react-redux';
 import {getAutorizationStatus} from '../../reducer/user/selectors';
 
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route, Redirect, Router} from 'react-router-dom';
+import history from '../../history';
 
 const SignInWrapped = witchAuthorization(SignIn);
 
@@ -20,13 +21,15 @@ const SignInWrapped = witchAuthorization(SignIn);
 const App = ({isAutorization}) => {
   const SignInWrappedPrivate = witchPrivateRoute(SignInWrapped, !isAutorization);
   const FavoritesPrivate = witchPrivateRoute(Favorites, isAutorization, `/login`);
-  return <Switch>
-    <Route path="/" exact component={MainPage} />
-    <Route path="/login" exact component={SignInWrappedPrivate} />
-    <Route path="/favorites" exact component={FavoritesPrivate} />
-    <Route path="/offer/:id" exact render={({match}) => <Property offerId={match.params.id} />} />
-    <Redirect to="/"/>
-  </Switch>;
+  return <Router history={history}>
+    <Switch>
+      <Route path="/" exact component={MainPage} />
+      <Route path="/login" exact component={SignInWrappedPrivate} />
+      <Route path="/favorites" exact component={FavoritesPrivate} />
+      <Route path="/offer/:id" exact render={({match}) => <Property offerId={match.params.id} />} />
+      <Redirect to="/"/>
+    </Switch>
+  </Router>;
 };
 
 const mapStateToProps = (state) => {
