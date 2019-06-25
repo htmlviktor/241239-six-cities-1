@@ -5,6 +5,10 @@ import Rating from '../rating/rating.jsx';
 const Reviews = ({reviews}) => {
 
   const reviewsList = reviews.map((review, index) => {
+    const options = {
+      month: `long`,
+      day: `numeric`
+    };
     return <li className="reviews__item" key={index}>
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
@@ -20,7 +24,7 @@ const Reviews = ({reviews}) => {
           </div>
         </div>
         <p className="reviews__text">{review.comment}</p>
-        <time className="reviews__time" dateTime={review.date}>{new Date(review.date).toLocaleDateString()}</time>
+        <time className="reviews__time" dateTime={review.date}>{new Date(review.date).toLocaleDateString(options)}</time>
       </div>
     </li>;
   });
