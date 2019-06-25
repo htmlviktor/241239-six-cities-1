@@ -46,6 +46,8 @@ const Operation = {
         dispatch(ActionCreator.userSaveData(data));
         dispatch(ActionCreator.userLogin());
       }
+    }).catch(() => {
+      return;
     });
   }
 };

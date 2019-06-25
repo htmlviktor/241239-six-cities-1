@@ -83,6 +83,8 @@ const Operation = {
         if (status === 200) {
           dispatch(ActionCreator.reloadOffers(adapterObj(data)));
         }
+      }).catch(() => {
+        return;
       });
   },
   loadFavoritesOffers: () => (dispatch, _getState, api) => {
