@@ -7,7 +7,7 @@ const Reviews = ({reviews}) => {
   const reviewsList = reviews.map((review, index) => {
     const options = {
       month: `long`,
-      day: `numeric`
+      year: `numeric`,
     };
     return <li className="reviews__item" key={index}>
       <div className="reviews__user user">
@@ -24,7 +24,7 @@ const Reviews = ({reviews}) => {
           </div>
         </div>
         <p className="reviews__text">{review.comment}</p>
-        <time className="reviews__time" dateTime={review.date}>{new Date(review.date).toLocaleDateString(options)}</time>
+        <time className="reviews__time" dateTime={review.date}>{new Date(review.date).toLocaleDateString(`en-US`, options)}</time>
       </div>
     </li>;
   });
